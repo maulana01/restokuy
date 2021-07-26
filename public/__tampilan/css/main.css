@@ -77,3 +77,7 @@ nav .container-fluid button img {
 .dropdown-color li > button:hover {
   background-color: #e5b299 !important;
 }
+
+.modal-header img {
+  width: 2em;
+}
