@@ -59,7 +59,7 @@
             </a>
           </li>
           <li>
-            <a href="#" class="nav-link font-primary">
+            <a href="./menu/menu.html" class="nav-link font-primary">
               <img src="./../../img/icon-menu-sidebar.svg" alt="Dashboard" class="pb-2">
               <span class="mx-2 fw-bold">Menu</span>
             </a>
@@ -168,7 +168,7 @@
                     <div class="card-body">
                       <h5 class="card-title text-center font-primary mb-3">Menu</h5>
                       <p class="card-text font-primary fw-normal">Informasi Tentang Menu Makanan dan Minuman</p>
-                      <a href="#" class="btn bg--third font-btn font-primary d-block col-6 mx-auto">lihat</a>
+                      <a href="./menu/menu.html" class="btn bg--third font-btn font-primary d-block col-6 mx-auto">lihat</a>
                     </div>
                   </div>
                 </div>
