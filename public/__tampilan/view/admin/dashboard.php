@@ -53,7 +53,7 @@
             <a href="" class="nav-link disabled"><span class="font-four fw-bold">Master File</span></a>
           </li>
           <li>
-            <a href="#" class="nav-link font-primary">
+            <a href="./pegawai.php" class="nav-link font-primary">
               <img src="./../../img/icon-pegawai-dashboard.svg" alt="Dashboard" class="pb-2">
               <span class="mx-2 fw-bold">Pegawai</span>
             </a>
@@ -158,7 +158,7 @@
                       <h5 class="card-title text-center font-primary mb-3">Pegawai</h5>
                       <p class="card-text font-primary fw-normal">Informasi Tentang Pegawai</p>
                       <br>
-                      <a href="#" class="btn bg--third font-btn font-primary d-block col-6 mx-auto">lihat</a>
+                      <a href="./pegawai.php" class="btn bg--third font-btn font-primary d-block col-6 mx-auto">lihat</a>
                     </div>
                   </div>
                 </div>
