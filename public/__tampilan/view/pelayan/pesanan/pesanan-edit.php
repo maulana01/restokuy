@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="./../../../css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="./../../../css/theme.css" type="text/css">
+  <link rel="stylesheet" href="./../../../css/main.css" type="text/css">
+  <title>Restokuy</title>
+</head>
+
+<body>
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg--four">
+      <div class="container-fluid">
+        <button class="btn btn-sm" id="btn-sidebar">
+          <img src="../../../img/hamburger-menu.svg" alt="Menu" class="font-primary">
+        </button>
+        <div class="d-flex">
+          <a href="./../dashboard.php" class="navbar-brand font-primary navbar-title">RestoKuy</a>
+        </div>
+        <form method="post">
+          <div class="dropdown">
+            <a role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="../../../img/icon-profile.svg" alt="profile">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-lg-end dropdown-color" aria-labelledby="dropdownMenuLink">
+              <li><span class="dropdown-item-text font-primary fw-normal">Dandi</span></li>
+              <li><button class="dropdown-item font-primary fw-normal" name="btn-keluar">Keluar</button></li>
+            </ul>
+          </div>
+        </form>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container-fluid">
+    <div class="row">
+      <div class="col-2 bg--third side" id="sidebars">
+        <ul class="nav flex-column my-3 nav-sidebar">
+          <li>
+            <a href="./../dashboard.php" class="nav-link font-primary">
+              <img src="./../../../img/icon-dashboard.svg" alt="Dashboard" class="pb-2">
+              <span class="mx-2 fw-bold">Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a href="./pesanan.php" class="nav-link font-primary">
+              <img src="./../../../img/icon-pemesanan-dashboard.svg" alt="Dashboard" class="pb-2">
+              <span class="mx-2 fw-bold">Pesanan</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col m-4">
+        <h2 class="font-primary">Informasi Pesanan</h2>
+        <a href="./pesanan.php" class="btn font-btn bg--third font-white my-4">Pesanan</a>
+        <div class="row">
+          <div class="col-5">
+            <form method="post" action="">
+              <div class="row mb-3">
+                <div class="col-3">
+                  <label for="exampleNoPesanan" class="form-label">No Pesanan</label>
+                </div>
+                <div class="col-auto">
+                  <input type="text" class="form-control" id="exampleNoPesanan" name="id_pegawai" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-3">
+                  <label for="exampleTanggalLahir" class="form-label">Tanggal</label>
+                </div>
+                <div class="col-auto">
+                  <input type="Date" class="form-control" id="exampleTanggalLahir" name="tgl" value="" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-3">
+                  <label for="exampleNoMeja" class="form-label">No Meja</label>
+                </div>
+                <div class="col-auto">
+                  <input type="text" class="form-control" id="exampleNoMeja" name="no_meja" required>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col">
+                  <table class="table table-hover table-borderless">
+                    <thead class="table-light">
+                      <tr>
+                        <th>Menu</th>
+                        <th>Jumlah</th>
+                        <th>Harga</th>
+                        <th>&nbsp;</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Foreach -->
+                      <tr>
+                        <td>Nasi Goyeng</td>
+                        <td>
+                          <input class="form-control form-control-sm" type="number" value="1" min="1" max="100" style="width: 5em;" autofocus>
+                        </td>
+                        <td class="text-end">Rp 400.000.000</td>
+                        <td>
+                          <form action="" method="post">
+                            <button name="hapus_list_pesanan" class="btn btn-sm font-btn bg--secondary font-white">hapus</button>
+                          </form>
+                        </td>
+                      </tr>
+                      <!-- Batas -->
+                      <tr>
+                        <td>Nasi Goyeng</td>
+                        <td class="w-25"><input class="form-control form-control-sm" type="number" value="1" min="1" max="100" style="width: 5em;" autofocus></td>
+                        <td class="text-end">Rp 400.000.000</td>
+                        <td>
+                          <form action="">
+                            <button name="hapus_list_pesanan" class="btn btn-sm font-btn bg--secondary font-white">hapus</button>
+                          </form>
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tfoot class="table-light">
+                      <tr>
+                        <td>Total</td>
+                        <td colspan="2" class="text-end">Rp 800.000.000</td>
+                        <td>&nbsp;</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+              <button type="submit" class="btn font-btn bg--primary font-white me-3" name="btn_tambah">Simpan</button>
+              <button type="reset" class="btn font-btn bg--four font-white" name="btn_reset">Reset</button>
+            </form>
+          </div>
+          <div class="col border border-3 rounded">
+            <div class="row row-cols-2 gy-3 py-3">
+              <!-- Foreach -->
+              <div class="col-5 mx-auto">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-auto">
+                        <h5 class="card-title">Nasi Goyeng</h5>
+                        <p class="card-text">Rp. 400.000.000</p>
+                        <h6 class="card-subtitle mb-2 text-muted">Stok 100</h6>
+                      </div>
+                      <div class="col d-flex justify-content-center align-items-center">
+                        <form action="" method="post">
+                          <button class="btn bg--primary" id="btn_tambah_menu" name="btn_tambah_menu">
+                            <img src="../../../img/icon-tambah-pesanan.svg" alt="plus">
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Batas -->
+              <div class="col-5 mx-auto">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-auto">
+                        <h5 class="card-title">Nasi Goyeng</h5>
+                        <p class="card-text">Rp. 400.000.000</p>
+                        <h6 class="card-subtitle mb-2 text-muted">Stok 100</h6>
+                      </div>
+                      <div class="col d-flex justify-content-center align-items-center">
+                        <form action="" method="post">
+                          <button class="btn bg--primary" id="btn_tambah_menu" name="btn_tambah_menu">
+                            <img src="../../../img/icon-tambah-pesanan.svg" alt="plus">
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-5 mx-auto">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-auto">
+                        <h5 class="card-title">Nasi Goyeng</h5>
+                        <p class="card-text">Rp. 400.000.000</p>
+                        <h6 class="card-subtitle mb-2 text-muted">Stok 100</h6>
+                      </div>
+                      <div class="col d-flex justify-content-center align-items-center">
+                        <form action="" method="post">
+                          <button class="btn bg--primary" id="btn_tambah_menu" name="btn_tambah_menu">
+                            <img src="../../../img/icon-tambah-pesanan.svg" alt="plus">
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-5 mx-auto">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-auto">
+                        <h5 class="card-title">Nasi Goyeng</h5>
+                        <p class="card-text">Rp. 400.000.000</p>
+                        <h6 class="card-subtitle mb-2 text-muted">Stok 100</h6>
+                      </div>
+                      <div class="col d-flex justify-content-center align-items-center">
+                        <form action="" method="post">
+                          <button class="btn bg--primary" id="btn_tambah_menu" name="btn_tambah_menu">
+                            <img src="../../../img/icon-tambah-pesanan.svg" alt="plus">
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  </main>
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <!-- <script src="./../../js/bootstrap.bundle.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script>
+    // $('#btn-sidebar').click(function () {
+    //   $('#sidebar').hide();
+    // })
+    document.getElementById('btn-sidebar').addEventListener('click', function() {
+      document.getElementById('sidebars').classList.toggle('side');
+    })
+
+    document.getElementsByName('hapus_list_pesanan').forEach(element => {
+      element.addEventListener('click', function(e) {
+        e.preventDefault();
+      });
+    });
+
+    document.getElementsByName('btn_tambah_menu').forEach(element => {
+      element.addEventListener('click', function(e) {
+        e.preventDefault();
+      });
+    });
+  </script>
+</body>
+
+</html>
