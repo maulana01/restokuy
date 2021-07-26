@@ -22,7 +22,7 @@
           <img src="./../../../img/hamburger-menu.svg" alt="Menu" class="font-primary">
         </button>
         <div class="d-flex">
-          <a href="dashboard.php" class="navbar-brand font-primary navbar-title">RestoKuy</a>
+          <a href="./../dashboard.php" class="navbar-brand font-primary navbar-title">RestoKuy</a>
         </div>
         <form method="post">
           <div class="dropdown">
@@ -59,7 +59,7 @@
             </a>
           </li>
           <li>
-            <a href="#" class="nav-link font-primary">
+            <a href="./../menu/menu.html" class="nav-link font-primary">
               <img src="./../../../img/icon-menu-sidebar.svg" alt="Dashboard" class="pb-2">
               <span class="mx-2 fw-bold">Menu</span>
             </a>
@@ -139,7 +139,7 @@
               <input type="password" class="form-control" id="examplePassword" name="password" required>
             </div>
           </div>
-          <button type="submit" class="btn font-btn bg--primary font-white" name="btn_tambah">Submit</button>
+          <button type="submit" class="btn font-btn bg--primary font-white" name="btn_tambah">Tambah</button>
         </form>
 
       </div>

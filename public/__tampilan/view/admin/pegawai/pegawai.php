@@ -22,7 +22,7 @@
           <img src="./../../../img/hamburger-menu.svg" alt="Menu" class="font-primary">
         </button>
         <div class="d-flex">
-          <a href="dashboard.php" class="navbar-brand font-primary navbar-title">RestoKuy</a>
+          <a href="./../dashboard.php" class="navbar-brand font-primary navbar-title">RestoKuy</a>
         </div>
         <form method="post">
           <div class="dropdown">
@@ -59,7 +59,7 @@
             </a>
           </li>
           <li>
-            <a href="#" class="nav-link font-primary">
+            <a href="./../menu/menu.html" class="nav-link font-primary">
               <img src="./../../../img/icon-menu-sidebar.svg" alt="Dashboard" class="pb-2">
               <span class="mx-2 fw-bold">Menu</span>
             </a>
@@ -67,10 +67,9 @@
         </ul>
       </div>
       <div class="col m-5">
-
         <h2 class="font-primary">Informasi Pegawai</h2>
         <a href="./pegawai-tambah.php" class="btn font-btn bg--third font-white my-4">Tambah</a>
-        <table class="table table-bordered table-hover">
+        <table class="table table-bordered table-hover table-sm">
           <thead class="table-light">
             <tr>
               <th>ID Pegawai</th>
@@ -94,7 +93,7 @@
               <td>Kasir</td>
               <td>Kdandi</td>
               <td class="text-center">
-                <a href="" class="btn btn-sm bg--four font-btn font-white">Edit</a>
+                <a href="./pegawai-edit.php" class="btn btn-sm bg--four font-btn font-white">Edit</a>
                 <button class="btn btn-sm bg--primary font-btn font-white" data-bs-toggle="modal" data-bs-target="#hapusModal">Hapus</button>
               </td>
             </tr>
@@ -108,7 +107,7 @@
               <td>Kasir</td>
               <td>Kdandi</td>
               <td class="text-center">
-                <a href="" class="btn btn-sm bg--four font-btn font-white">Edit</a>
+                <a href="./pegawai-edit.php" class="btn btn-sm bg--four font-btn font-white">Edit</a>
                 <button class="btn btn-sm bg--primary font-btn font-white" data-bs-toggle="modal" data-bs-target="#hapusModal">Hapus</button>
               </td>
             </tr>
@@ -134,12 +133,6 @@
           </div>
         </div>
       </div>
-      <div class="row my-5">
-        <div class="col">
-
-        </div>
-      </div>
-    </div>
     </div>
   </main>
 
