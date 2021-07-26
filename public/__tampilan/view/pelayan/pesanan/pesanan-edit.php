@@ -68,7 +68,7 @@
                   <label for="exampleNoPesanan" class="form-label">No Pesanan</label>
                 </div>
                 <div class="col-auto">
-                  <input type="text" class="form-control" id="exampleNoPesanan" name="id_pegawai" required>
+                  <input type="text" class="form-control" id="exampleNoPesanan" name="id_pegawai" value="" required>
                 </div>
               </div>
               <div class="row mb-3">
@@ -84,7 +84,7 @@
                   <label for="exampleNoMeja" class="form-label">No Meja</label>
                 </div>
                 <div class="col-auto">
-                  <input type="text" class="form-control" id="exampleNoMeja" name="no_meja" required>
+                  <input type="text" class="form-control" id="exampleNoMeja" name="no_meja" value="" required>
                 </div>
               </div>
               <div class="row mb-3">
