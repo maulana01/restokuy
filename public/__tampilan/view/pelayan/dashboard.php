@@ -69,7 +69,7 @@
                     <h5 class="card-title text-center font-primary mb-3">Pesanan</h5>
                     <p class="card-text font-primary fw-normal">Informasi Tentang Pesanan</p>
                     <br>
-                    <a href="./pegawai/pegawai.php" class="btn bg--third font-btn font-primary d-block col-6 mx-auto">lihat</a>
+                    <a href="./pesanan/pesanan.php" class="btn bg--third font-btn font-primary d-block col-6 mx-auto">lihat</a>
                   </div>
                 </div>
               </div>
