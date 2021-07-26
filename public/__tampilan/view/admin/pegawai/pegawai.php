@@ -66,7 +66,7 @@
           </li>
         </ul>
       </div>
-      <div class="col m-5">
+      <div class="col-auto m-4">
         <h2 class="font-primary">Informasi Pegawai</h2>
         <a href="./pegawai-tambah.php" class="btn font-btn bg--third font-white my-4">Tambah</a>
         <table class="table table-bordered table-hover table-sm">
