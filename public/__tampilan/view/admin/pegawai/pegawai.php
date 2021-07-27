@@ -86,7 +86,7 @@
             <use xlink:href="#exclamation-triangle-fill" />
           </svg>
           <div>
-            Gagal Mengubah Data!
+            Gagal Menghapus Data!
           </div>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
@@ -95,7 +95,7 @@
             <use xlink:href="#check-circle-fill" />
           </svg>
           <div>
-            Data Berhasil Diubah!
+            Data Berhasil Dihapus!
           </div>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
