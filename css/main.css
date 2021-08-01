@@ -1,0 +1,83 @@
+.login {
+  overflow-y: hidden !important;
+}
+
+.login-page {
+  background-image: url('../img/bg_login.png');
+  height: 100vh;
+  background-position: center;
+  background-size: cover;
+}
+
+.card-title {
+  font-weight: 700;
+}
+
+nav .container-fluid button img {
+  width: 2em;
+}
+
+.navbar-title {
+  font-weight: 700 !important;
+}
+
+#dropdownMenuLink > img {
+  width: 2em;
+}
+
+#sidebars {
+  min-height: 100vh;
+}
+
+.nav-sidebar li a {
+  font-size: 1.2rem;
+}
+
+.nav-sidebar li a {
+  font-size: 1.2rem;
+}
+
+.nav-sidebar li a img {
+  width: 1.5em !important;
+}
+
+.nav-sidebar li a:hover {
+  background-color: #fcdec0;
+}
+
+.icon-dashboard {
+  height: 4em;
+}
+
+.cards {
+  border-radius: 15px;
+  box-shadow: 2px 2px 4px #fcdec0,
+  -2px -2px 8px #fcdec0;
+}
+
+.cards > img {
+  height: 350px !important;
+}
+
+.sidebar-slide {
+  display: contents;
+}
+
+.side {
+  /* margin-left: -300px; */
+  display: none;
+}
+
+.dropdown-color {
+  background-color: #fcdec0;
+  border: none;
+  
+}
+
+.dropdown-color li > button:hover {
+  background-color: #e5b299 !important;
+}
+
+.modal-header img {
+  width: 2em;
+}
