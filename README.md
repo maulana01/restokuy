@@ -10,3 +10,4 @@
 - Membuat Fitur Tambah, Ubah, Hapus Data Menu
 - Menampilkan List Pesanan pada Role Pelayan
 - Membuat Fitur Cek Ketersediaan Menu pada Role Koki
+- fixed sidebar sticky dan tinggi pada list menu
