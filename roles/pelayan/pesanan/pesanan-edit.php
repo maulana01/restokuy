@@ -56,7 +56,7 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
   <main class="container-fluid">
     <div class="row">
       <div class="col-2 bg--third side" id="sidebars">
-        <ul class="nav flex-column my-3 nav-sidebar">
+        <ul class="nav flex-column my-3 nav-sidebar position-fixed">
           <li>
             <a href="./../dashboard.php" class="nav-link font-primary">
               <img src="./../../../img/icon-dashboard.svg" alt="Dashboard" class="pb-2">
@@ -212,90 +212,36 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
               <button type="reset" class="btn font-btn bg--four font-white" name="btn_reset">Reset</button>
             </form>
           </div>
-          <div class="col border border-3 rounded">
+          <div class="col border border-3 rounded overflow-auto" style="height: 400px;">
             <div class="row row-cols-2 gy-3 py-3">
               <!-- Foreach -->
-              <div class="col-5 mx-auto">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-auto">
-                        <h5 class="card-title">Nasi Goyeng</h5>
-                        <p class="card-text">Rp. 400.000.000</p>
-                        <h6 class="card-subtitle mb-2 text-muted">Stok 100</h6>
-                      </div>
-                      <div class="col d-flex justify-content-center align-items-center">
-                        <form action="" method="post">
-                          <button class="btn bg--primary" id="btn_tambah_menu" name="btn_tambah_menu">
-                            <img src="../../../img/icon-tambah-pesanan.svg" alt="plus">
-                          </button>
-                        </form>
+              <?php $data = getListMenu(); ?>
+              <!-- Foreach -->
+              <?php
+              foreach ($data as $datamenu) {
+              ?>
+                <div class="col-6 mx-auto">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-auto">
+                          <h5 class="card-title"><?php echo $datamenu['nama_menu']; ?></h5>
+                          <p class="card-text">Rp. <?php echo $datamenu['harga_menu']; ?></p>
+                          <!-- <h6 class="card-subtitle mb-2 text-muted">Stok 100</h6> -->
+                        </div>
+                        <div class="col d-flex justify-content-end align-items-center">
+                          <form action="" method="post">
+                            <button class="btn bg--primary" id="btn_tambah_menu" name="btn_tambah_menu">
+                              <img src="../../../img/icon-tambah-pesanan.svg" alt="plus">
+                            </button>
+                          </form>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              <?php } ?>
               <!-- Batas -->
-              <div class="col-5 mx-auto">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-auto">
-                        <h5 class="card-title">Nasi Goyeng</h5>
-                        <p class="card-text">Rp. 400.000.000</p>
-                        <h6 class="card-subtitle mb-2 text-muted">Stok 100</h6>
-                      </div>
-                      <div class="col d-flex justify-content-center align-items-center">
-                        <form action="" method="post">
-                          <button class="btn bg--primary" id="btn_tambah_menu" name="btn_tambah_menu">
-                            <img src="../../../img/icon-tambah-pesanan.svg" alt="plus">
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-5 mx-auto">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-auto">
-                        <h5 class="card-title">Nasi Goyeng</h5>
-                        <p class="card-text">Rp. 400.000.000</p>
-                        <h6 class="card-subtitle mb-2 text-muted">Stok 100</h6>
-                      </div>
-                      <div class="col d-flex justify-content-center align-items-center">
-                        <form action="" method="post">
-                          <button class="btn bg--primary" id="btn_tambah_menu" name="btn_tambah_menu">
-                            <img src="../../../img/icon-tambah-pesanan.svg" alt="plus">
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-5 mx-auto">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-auto">
-                        <h5 class="card-title">Nasi Goyeng</h5>
-                        <p class="card-text">Rp. 400.000.000</p>
-                        <h6 class="card-subtitle mb-2 text-muted">Stok 100</h6>
-                      </div>
-                      <div class="col d-flex justify-content-center align-items-center">
-                        <form action="" method="post">
-                          <button class="btn bg--primary" id="btn_tambah_menu" name="btn_tambah_menu">
-                            <img src="../../../img/icon-tambah-pesanan.svg" alt="plus">
-                          </button>
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
   </main>
