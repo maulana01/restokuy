@@ -85,22 +85,39 @@ if (($_SESSION['jabatan'] != 'koki') && ($_SESSION['jabatan'] == 'admin')) {
         <h2 class="font-primary">Informasi Detail Pemesanan</h2>
         <a href="pemesanan.php" class="btn btn-sm bg--secondary font-btn font-white mt-3 mb-3">pemesanan</a>
 
-        <div class="mt-3 mb-3">
-          <h5>No Pesanan</h5>
-        </div>
+        <?php
+        if (isset($_GET["no_pesanan"])) {
+          $db = dbConnect();
+          $no_pesanan = $db->escape_string($_GET["no_pesanan"]);
+          if ($datadetail = getDataPesananDanDetailPesanan($no_pesanan)) {
+        ?>
+            <div class="mt-3 mb-3">
+              <h5>No Pesanan : </h5>
+              <h5><?php echo $datadetail['no_pesanan']; ?></h5>
+            </div>
 
-        <div class="mt-3 mb-3">
-          <h5>Nomor Meja</h5>
-        </div>
+            <div class="mt-3 mb-3">
+              <h5>Nomor Meja</h5>
+              <h5><?php echo $datadetail['no_meja']; ?></h5>
+            </div>
 
-        <div class="mt-3 mb-5">
-          <h5>List Pesanan : </h5>
-        </div>
-        <div class="mt-3 mb-5">
-          <h5>skfasfsakfjs</h5>
-        </div>
+            <div class="mt-3 mb-5">
+              <h5>List Pesanan : </h5>
+              <h5><?php echo $datadetail['id_menu']; ?></h5>
+            </div>
+            <div class="mt-3 mb-5">
+              <h5>skfasfsakfjs</h5>
+            </div>
 
-        <a href="pemesanan.php" class="btn btn-sm bg--four font-btn font-white mt-3 mb-3">selesai</a>
+            <a href="pemesanan.php" class="btn btn-sm bg--four font-btn font-white mt-3 mb-3">selesai</a>
+          <?php
+          } else
+            echo "Akun dengan Id : $no_pesanan tidak ada. Pengeditan dibatalkan";
+          ?>
+        <?php
+        } else
+          echo "id_pegawai dan id_akun tidak ada. Pengeditan dibatalkan.";
+        ?>
 
         <!-- Modal -->
         <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

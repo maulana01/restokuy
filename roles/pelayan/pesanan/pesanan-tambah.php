@@ -116,6 +116,9 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
                     </thead>
                     <tbody>
                       <!-- Foreach -->
+                      <?php tambahDetailPesanan(); ?>
+
+                      <!-- Foreach -->
                       <?php $data = tampilDetailPesananTerbaru(); ?>
                       <?php foreach ($data as $datadetailpesanan) { ?>
                         <tr>
@@ -151,8 +154,6 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
               <!-- List Pegawai -->
               <?php $data = getListMenu(); ?>
 
-              <!-- Foreach -->
-              <?php tambahDetailPesanan(); ?>
               <?php
               foreach ($data as $datamenu) {
               ?>

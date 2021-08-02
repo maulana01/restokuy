@@ -699,7 +699,37 @@ function tampilDetailPesananTerbaru()
 	if ($db->connect_errno == 0) {
 		$res = $db->query("SELECT * FROM detail_pesanan 
 		JOIN menu ON menu.`id_menu` = detail_pesanan.`id_menu`
-		WHERE no_pesanan = (SELECT MAX(no_pesanan) FROM detail_pesanan);");
+		WHERE no_pesanan = (SELECT MAX(no_pesanan) FROM detail_pesanan)");
+		if ($res) {
+			$data = $res->fetch_all(MYSQLI_ASSOC);
+			$res->free();
+			return $data;
+		} else
+			return FALSE;
+	} else
+		return FALSE;
+}
+
+function tampilPesananBerdasarkanStatus()
+{
+	$db = dbConnect();
+	if ($db->connect_errno == 0) {
+		$res = $db->query("SELECT ps.*, pg.* FROM pesanan ps JOIN pegawai pg WHERE ps.id_pegawai=pg.id_pegawai AND status='belum selesai'");
+		if ($res) {
+			$data = $res->fetch_all(MYSQLI_ASSOC);
+			$res->free();
+			return $data;
+		} else
+			return FALSE;
+	} else
+		return FALSE;
+}
+
+function getDataPesananDanDetailPesanan($no_pesanan)
+{
+	$db = dbConnect();
+	if ($db->connect_errno == 0) {
+		$res = $db->query("SELECT ps.*, dtps.* FROM pesanan ps JOIN detail_pesanan dtps WHERE ps.no_pesanan=dtps.no_pesanan AND ps.no_pesanan='$no_pesanan'");
 		if ($res) {
 			$data = $res->fetch_all(MYSQLI_ASSOC);
 			$res->free();
