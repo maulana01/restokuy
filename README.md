@@ -8,3 +8,5 @@
 - Membuat Fitur Logout
 - Membuat Fitur Tambah, Ubah, Hapus Data Pegawai
 - Membuat Fitur Tambah, Ubah, Hapus Data Menu
+- Menampilkan List Pesanan pada Role Pelayan
+- Membuat Fitur Cek Ketersediaan Menu pada Role Koki

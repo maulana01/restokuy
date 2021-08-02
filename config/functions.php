@@ -152,7 +152,7 @@ function tambahDataPegawai()
 							<use xlink:href="#check-circle-fill" />
 						</svg>
 						<div>
-							Data Berhasil Ditambah!
+							Data Pegawai Berhasil Ditambah!
 						</div>
 						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 					</div>
@@ -175,7 +175,7 @@ function tambahDataPegawai()
 						<use xlink:href="#exclamation-triangle-fill" />
 					</svg>
 					<div>
-						Gagal Menambahkan Data!
+						Gagal Menambahkan Data Pegawai!
 					</div>
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>
@@ -214,7 +214,7 @@ function hapusDataPegawai()
 						<use xlink:href="#check-circle-fill" />
 					</svg>
 					<div>
-						Data Berhasil Dihapus!
+						Data Pegawai Berhasil Dihapus!
 					</div>
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>';
@@ -234,7 +234,7 @@ function hapusDataPegawai()
 						<use xlink:href="#exclamation-triangle-fill" />
 					</svg>
 					<div>
-						Gagal Menghapus Data dikarenakan data sudah tidak ada.
+						Gagal Menghapus Data Pegawai dikarenakan data sudah tidak ada.
 					</div>
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>';
@@ -255,7 +255,7 @@ function hapusDataPegawai()
 					  		<use xlink:href="#exclamation-triangle-fill" />
 						</svg>
 						<div>
-					  		Gagal Menghapus Data.
+					  		Gagal Menghapus Data Pegawai!
 						</div>
 						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				  </div>';
@@ -336,7 +336,7 @@ function updateDataPegawai()
 							<use xlink:href="#check-circle-fill" />
 						</svg>
 						<div>
-							Data Berhasil Diubah!
+							Data Pegawai Berhasil Diubah!
 						</div>
 						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 					</div>
@@ -359,7 +359,7 @@ function updateDataPegawai()
 						<use xlink:href="#exclamation-triangle-fill" />
 					</svg>
 					<div>
-						Gagal Merubah Data!
+						Gagal Merubah Data Pegawai!
 					</div>
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>
@@ -379,7 +379,7 @@ function getListMenu()
 	$db = dbConnect();
 	if ($db->connect_errno == 0) {
 		$res = $db->query("SELECT * FROM menu
-						 ORDER BY id_menu");
+						 ORDER BY id_menu AND CAST(kategori_menu as CHAR)='minuman'");
 		if ($res) {
 			$data = $res->fetch_all(MYSQLI_ASSOC);
 			$res->free();
@@ -427,7 +427,7 @@ function tambahDataMenu()
 							<use xlink:href="#check-circle-fill" />
 						</svg>
 						<div>
-							Data Berhasil Ditambah!
+							Data Menu Berhasil Ditambah!
 						</div>
 						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 					</div>
@@ -450,7 +450,7 @@ function tambahDataMenu()
 						<use xlink:href="#exclamation-triangle-fill" />
 					</svg>
 					<div>
-						Gagal Menambahkan Data!
+						Gagal Menambahkan Data Menu!
 					</div>
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>
@@ -539,11 +539,11 @@ function updateDataMenu()
 						<use xlink:href="#exclamation-triangle-fill" />
 					</svg>
 					<div>
-						Gagal Merubah Data Menu.
+						Gagal Merubah Data Menu!
 					</div>
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>
-	<?php
+				<?php
 				echo '<meta http-equiv="refresh" content="3;URL=menu-edit.php?id_menu=' . $id_menu . '" />';
 			}
 		} else
@@ -578,7 +578,7 @@ function hapusDataMenu()
 						<use xlink:href="#check-circle-fill" />
 					</svg>
 					<div>
-						Data Berhasil Dihapus!
+						Data Menu Berhasil Dihapus!
 					</div>
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>';
@@ -598,7 +598,7 @@ function hapusDataMenu()
 						<use xlink:href="#exclamation-triangle-fill" />
 					</svg>
 					<div>
-						Gagal Menghapus Data dikarenakan data sudah tidak ada.
+						Gagal Menghapus Data Menu dikarenakan data sudah tidak ada!
 					</div>
 					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				</div>';
@@ -619,7 +619,7 @@ function hapusDataMenu()
 					  		<use xlink:href="#exclamation-triangle-fill" />
 						</svg>
 						<div>
-					  		Gagal Menghapus Data Menu.
+					  		Gagal Menghapus Data Menu!
 						</div>
 						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 				  </div>';
@@ -631,6 +631,206 @@ function hapusDataMenu()
 }
 
 /*========================== END CRUD Menu ==========================*/
+
+/*========================== CRUD Pesanan Pelayan ==========================*/
+function getListPesanan()
+{
+	$db = dbConnect();
+	if ($db->connect_errno == 0) {
+		$res = $db->query("SELECT * FROM pesanan
+						 ORDER BY no_pesanan");
+		if ($res) {
+			$data = $res->fetch_all(MYSQLI_ASSOC);
+			$res->free();
+			return $data;
+		} else
+			return FALSE;
+	} else
+		return FALSE;
+}
+
+/*============== BELUM FIXXX =====================*/
+function tambahDataPesananDanDetailPesanan()
+{
+	if (isset($_POST["btn_tambah"])) {
+		$db = dbConnect();
+		if ($db->connect_errno == 0) {
+			// Bersihkan data
+			$no_meja	    = $db->escape_string($_POST["no_meja"]);
+			$id_pegawai	    = $db->escape_string($_SESSION["id_pegawai"]);
+
+			// Susun query insert
+			$sql = "INSERT INTO pesanan(no_pesanan, tgl_pesanan, no_meja, status, id_pegawai)
+            VALUES('', CURRENT_TIME, '$no_meja', 'belum selesai', '$id_pegawai')";
+
+			// Eksekusi query insert
+			$res = $db->query($sql);
+			if ($res === TRUE) {
+
+				// Ambil IdAkun yang terbaru
+				$ambilNoPesanan = "SELECT MAX(no_pesanan) as no_pesanan from pesanan";
+				$queryAmbilNoPesanan = $db->query($ambilNoPesanan);
+				$fetchNoPesanan = $queryAmbilNoPesanan->fetch_object();
+				$NoPesanan = $fetchNoPesanan->no_pesanan;
+
+				// $sql2 = "INSERT INTO detail_pesanan(id_pegawai, nama_pegawai, alamat, tempat_lahir, tgl_lahir, no_hp, jabatan, id_akun)
+				// VALUES('', '$namaPegawai', '$alamat', '$tempat_lahir', '$tgl_lahir', '$no_hp', '$jabatan', '$IdAkun')";
+
+				// Eksekusi Query Insert Transaksi
+				// $db->query($sql2);
+
+				if ($db->affected_rows > 0) { // jika ada penambahan data
+				?>
+					<!-- Alert Berhasil -->
+					<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+						<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+							<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+						</symbol>
+						<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+							<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+						</symbol>
+					</svg>
+					<div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
+						<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+							<use xlink:href="#check-circle-fill" />
+						</svg>
+						<div>
+							Data Pegawai Berhasil Ditambah!
+						</div>
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+				<?php
+					echo '<meta http-equiv="refresh" content="3;URL=pegawai-tambah.php" />';
+				}
+			} else {
+				?>
+				<!-- Alert Gagal -->
+				<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+					<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+						<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+					</symbol>
+					<symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+						<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+					</symbol>
+				</svg>
+				<div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
+					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+						<use xlink:href="#exclamation-triangle-fill" />
+					</svg>
+					<div>
+						Gagal Menambahkan Data Pegawai!
+					</div>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+				<?php
+				echo '<meta http-equiv="refresh" content="3;URL=pegawai-tambah.php" />';
+			}
+		} else
+			echo "Gagal koneksi" . (DEVELOPMENT ? " : " . $db->connect_error : "") . "<br>";
+	}
+}
+/*========================== END CRUD Pesanan Pelayan ==========================*/
+
+/*========================== CRUD Pesanan Koki ==========================*/
+function getListMenuTersediaDanTidakTersedia()
+{
+	$db = dbConnect();
+	if ($db->connect_errno == 0) {
+		$res = $db->query("SELECT * FROM menu
+						 ORDER BY id_menu AND CAST(status AS char)='tidak tersedia'");
+		if ($res) {
+			$data = $res->fetch_all(MYSQLI_ASSOC);
+			$res->free();
+			return $data;
+		} else
+			return FALSE;
+	} else
+		return FALSE;
+}
+
+function ubahStatusKetersediaanMenu()
+{
+	if (isset($_POST["ubahStatusKetersediaanMenu"])) {
+		$db = dbConnect();
+		if ($db->connect_errno == 0) {
+
+			$id_menu     	    = $db->escape_string($_POST["id_menu"]);
+			$status		        = $db->escape_string($_POST["status"]);
+			// Susun query insert
+			$sql = "UPDATE menu SET id_menu='$id_menu', status='$status' WHERE id_menu='$id_menu'";
+
+			// Eksekusi query insert
+			$res = $db->query($sql);
+			if ($res === TRUE) {
+				if ($db->affected_rows > 0) { // jika ada penambahan data
+				?>
+					<!-- Alert Berhasil -->
+					<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+						<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+							<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+						</symbol>
+						<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+							<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+						</symbol>
+					</svg>
+					<div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
+						<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+							<use xlink:href="#check-circle-fill" />
+						</svg>
+						<div>
+							Status Ketersediaan Menu Berhasil Diubah!
+						</div>
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+				<?php
+					echo '<meta http-equiv="refresh" content="3;URL=cek-menu.php" />';
+				}
+			} else {
+				?>
+				<!-- Alert Gagal -->
+				<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+					<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+						<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+					</symbol>
+					<symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+						<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+					</symbol>
+				</svg>
+				<div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
+					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
+						<use xlink:href="#exclamation-triangle-fill" />
+					</svg>
+					<div>
+						Gagal Merubah Status Ketersediaan Menu
+					</div>
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>
+	<?php
+				echo '<meta http-equiv="refresh" content="3;URL=cek-menu.php" />';
+			}
+		} else
+			echo "Gagal koneksi" . (DEVELOPMENT ? " : " . $db->connect_error : "") . "<br>";
+	}
+}
+
+function totalPesanan()
+{
+	$db = dbConnect();
+	if ($db->connect_errno == 0) {
+		$res = $db->query("SELECT count(no_pesanan) as no_pesanan
+						 FROM pesanan");
+		if ($res) {
+			$data = $res->fetch_object();
+			$totalPesanan = $data->no_pesanan;
+			$res->free();
+			echo $totalPesanan;
+			return $totalPesanan;
+		} else
+			return FALSE;
+	} else
+		return FALSE;
+}
+/*========================== END CRUD Pesanan Koki ==========================*/
 
 function alertLogin($msg)
 {

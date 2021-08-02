@@ -114,7 +114,7 @@ if (($_SESSION['jabatan'] != 'koki') && ($_SESSION['jabatan'] == 'admin')) {
           <div class="col-2 bg--four p-3">
             <div class="row">
               <div class="col text-center m-auto">
-                <span class="fs-1 fw-bold font-secondary">5</span>
+                <span class="fs-1 fw-bold font-secondary"><?php totalPesanan(); ?></span>
               </div>
               <div class="col text-center">
                 <div class="row">

@@ -85,7 +85,12 @@ if (($_SESSION['jabatan'] != 'koki') && ($_SESSION['jabatan'] == 'admin')) {
       <div class="col m-5">
         <h2 class="font-primary">Informasi Ketersediaan Menu</h2>
         <a href="dashboard.php" class="btn btn-sm bg--four font-btn font-white mt-3 mb-3">DASHBOARD</a>
-        <table class="mt-5 table table-bordered table-hover">
+        <!-- Alert -->
+        <?php ubahStatusKetersediaanMenu(); ?>
+
+        <!-- List Menu -->
+        <?php $data = getListMenuTersediaDanTidakTersedia(); ?>
+        <table class="mt-3 table table-bordered table-hover">
           <thead class="table-light">
             <tr>
               <th>ID Menu</th>
@@ -94,45 +99,63 @@ if (($_SESSION['jabatan'] != 'koki') && ($_SESSION['jabatan'] == 'admin')) {
               <th>Jenis Menu</th>
               <th>Harga Menu</th>
               <th>Gambar Menu</th>
+              <th>Status Menu</th>
               <th colspan="2" class="text-center">Aksi</th>
             </tr>
           </thead>
           <tbody>
             <!-- Foreach -->
-            <tr>
-              <td>001</td>
-              <td>Rp. 5000</td>
-              <td>Ngutang</td>
-              <td>MLNAKNTL69</td>
-              <td>123123112</td>
-              <td>MKN69</td>
-              <td class="text-center">
-                <button class="btn btn-sm bg--four font-btn font-white" data-bs-toggle="modal" data-bs-target="#hapusModal">Lunas</button>
-              </td>
-            </tr>
-            <!-- foreach -->
+            <?php
+            $nomkn = 1;
+            $nomnn = 1;
+            foreach ($data as $datamenu) {
+            ?>
+              <tr>
+                <?php
+                if ($datamenu['kategori_menu'] == 'makanan') {
+                  $idmenu = 'MKN00' . $nomkn++;
+                } else if ($datamenu['kategori_menu'] == 'minuman') {
+                  $idmenu = 'MNN00' . $nomnn++;
+                }
+                ?>
+                <td><?php echo $idmenu; ?></td>
+                <td><?php echo $datamenu['nama_menu']; ?></td>
+                <td><?php echo ucfirst($datamenu['kategori_menu']); ?></td>
+                <td><?php echo ucfirst($datamenu['jenis_menu']); ?></td>
+                <td><?php echo $datamenu['harga_menu']; ?></td>
+                <td><?php echo '<img width="250" src="data:image/jpeg;base64,' . base64_encode($datamenu['gambar_menu']) . '"/>'; ?></td>
+                <td><?php echo ucfirst($datamenu['status']); ?></td>
+                <td class="text-center">
+                  <button class="btn btn-sm bg--four font-btn font-white" data-bs-toggle="modal" data-bs-target="#hapusModal<?= $datamenu['id_menu']; ?>"><?php echo ($datamenu['status'] == 'tersedia') ? 'Tidak Tersedia' : 'Tersedia'; ?></button>
+                </td>
+              </tr>
+              <!-- Modal -->
+              <form action="" method="post">
+                <div class="modal fade" id="hapusModal<?= $datamenu['id_menu']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <input type="hidden" name="id_menu" value="<?= $datamenu['id_menu']; ?>">
+                  <input type="hidden" name="status" value="<?= ($datamenu['status'] == 'tersedia') ? 'tidak tersedia' : 'tersedia'; ?>">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <img src="../../img/question-circle-fill.svg" alt="question">
+                        <h5 class="modal-title ms-2" id="exampleModalLabel">Konfirmasi Hapus Data</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Apakah Anda Yakin Ingin Merubah Status Ketersediaan Menu?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button name="ubahStatusKetersediaanMenu" type="submit" class="btn btn-font bg--primary font-white" data-bs-dismiss="modal">Ya</button>
+                        <button type="button" class="btn btn-font bg--four font-white" data-bs-dismiss="modal">Tidak</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            <?php } ?>
           </tbody>
         </table>
 
-        <!-- Modal -->
-        <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <img src="../../img/question-circle-fill.svg" alt="question">
-                <h5 class="modal-title ms-2" id="exampleModalLabel">Konfirmasi Hapus Data</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <p>Apakah Anda Yakin Ingin Menghapus ?</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-font bg--primary font-white" data-bs-dismiss="modal">Ya</button>
-                <button type="button" class="btn btn-font bg--four font-white" data-bs-dismiss="modal">Tidak</button>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </main>
