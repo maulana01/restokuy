@@ -76,6 +76,7 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
         <a href="./pesanan.php" class="btn font-btn bg--third font-white my-4">Pesanan</a>
         <!-- Alert -->
 
+        <?php $nopesanan = getNoPesanan(); ?>
         <div class="row">
           <div class="col-5">
             <form method="post" action="">
@@ -84,7 +85,7 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
                   <label for="exampleNoPesanan" class="form-label">No Pesanan</label>
                 </div>
                 <div class="col-auto">
-                  <input type="text" class="form-control" id="exampleNoPesanan" name="id_pegawai" required>
+                  <input value="<?php echo $nopesanan; ?>" type="text" class="form-control" id="exampleNoPesanan" name="id_pegawai" required readonly>
                 </div>
               </div>
               <div class="row mb-3">
@@ -92,7 +93,7 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
                   <label for="exampleTanggalLahir" class="form-label">Tanggal</label>
                 </div>
                 <div class="col-auto">
-                  <input type="Date" class="form-control" id="exampleTanggalLahir" name="tgl" value="" required>
+                  <input type="date" class="form-control" id="exampleTanggalLahir" name="tgl" value="<?php echo date('Y-m-d'); ?>" required readonly>
                 </div>
               </div>
               <div class="row mb-3">
@@ -110,24 +111,26 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
                       <tr>
                         <th>Menu</th>
                         <th>Jumlah</th>
-                        <th>Harga</th>
-                        <th>&nbsp;</th>
+                        <th colspan="2" class="text-center">Harga</th>
                       </tr>
                     </thead>
                     <tbody>
                       <!-- Foreach -->
-                      <tr>
-                        <td>Nasi Goyeng</td>
-                        <td>
-                          <input class="form-control form-control-sm" type="number" value="1" min="1" max="100" style="width: 5em;" autofocus>
-                        </td>
-                        <td class="text-end">Rp 400.000.000</td>
-                        <td>
-                          <form action="" method="post">
-                            <button name="hapus_list_pesanan" class="btn btn-sm font-btn bg--secondary font-white">hapus</button>
-                          </form>
-                        </td>
-                      </tr>
+                      <?php $data = tampilDetailPesananTerbaru(); ?>
+                      <?php foreach ($data as $datadetailpesanan) { ?>
+                        <tr>
+                          <td><?php echo $datadetailpesanan['nama_menu']; ?></td>
+                          <td>
+                            <input class="form-control form-control-sm" type="number" value="1" min="1" max="100" style="width: 5em;" autofocus>
+                          </td>
+                          <td class="text-center">
+                            Rp <?php echo $datadetailpesanan['harga_menu']; ?>
+                            <form action="" method="post">
+                              <button name="hapus_list_pesanan" class="btn btn-sm font-btn bg--secondary font-white">hapus</button>
+                            </form>
+                          </td>
+                        </tr>
+                      <?php } ?>
                       <!-- Batas -->
                     </tbody>
                     <tfoot class="table-light">
@@ -147,7 +150,9 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
             <div class="row row-cols-2 gy-3 py-3">
               <!-- List Pegawai -->
               <?php $data = getListMenu(); ?>
+
               <!-- Foreach -->
+              <?php tambahDetailPesanan(); ?>
               <?php
               foreach ($data as $datamenu) {
               ?>
@@ -162,7 +167,9 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
                         </div>
                         <div class="col d-flex justify-content-end align-items-center">
                           <form action="" method="post">
-                            <button class="btn bg--primary" id="btn_tambah_menu" name="btn_tambah_menu">
+                            <input type="hidden" name="no_pesanan" value="<?php echo $nopesanan; ?>">
+                            <input type="hidden" name="id_menu" value="<?php echo $datamenu['id_menu']; ?>">
+                            <button name="btn_tambah_menu" type="submit" class="btn bg--primary" id="btn_tambah_menu">
                               <img src="../../../img/icon-tambah-pesanan.svg" alt="plus">
                             </button>
                           </form>
@@ -194,11 +201,11 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
       });
     });
 
-    document.getElementsByName('btn_tambah_menu').forEach(element => {
-      element.addEventListener('click', function(e) {
-        e.preventDefault();
-      });
-    });
+    // document.getElementsByName('btn_tambah_menu').forEach(element => {
+    //   element.addEventListener('click', function(e) {
+    //     e.preventDefault();
+    //   });
+    // });
   </script>
 </body>
 
