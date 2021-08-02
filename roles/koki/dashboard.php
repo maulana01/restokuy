@@ -56,15 +56,12 @@ if (($_SESSION['jabatan'] != 'koki') && ($_SESSION['jabatan'] == 'admin')) {
   <main class="container-fluid">
     <div class="row">
       <div class="col-2 bg--third side" id="sidebars">
-        <ul class="nav flex-column my-3 nav-sidebar">
+        <ul class="nav flex-column my-3 nav-sidebar position-fixed">
           <li>
             <a href="./dashboard.php" class="nav-link font-primary">
               <img src="./../../img/icon-dashboard.svg" alt="Dashboard" class="pb-2">
               <span class="mx-2 fw-bold">Dashboard</span>
             </a>
-          </li>
-          <li>
-            <a href="" class="nav-link disabled"><span class="font-four fw-bold">Master File</span></a>
           </li>
           <li>
             <a href="./pemesanan.php" class="nav-link font-primary">
@@ -75,7 +72,7 @@ if (($_SESSION['jabatan'] != 'koki') && ($_SESSION['jabatan'] == 'admin')) {
           <li>
             <a href="./cek-menu.php" class="nav-link font-primary">
               <img src="./../../img/icon-ketersediaan-menu.svg" alt="Dashboard" class="pb-2">
-              <span class="fw-bold">Ketersediaan Menu</span>
+              <span class="fw-bold">Cek Menu</span>
             </a>
           </li>
         </ul>

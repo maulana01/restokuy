@@ -27,14 +27,14 @@ include_once('./config/functions.php');
                 if (isset($_GET["error"])) {
                     $error = $_GET["error"];
                     if ($error == 1) {
-                        showError(alertLogin('username atau password tidak sesuai.'));
+                        showError(alertLogin('Username atau Password tidak sesuai.'));
                     } else if ($error == 2) {
                         showError(alertLogin('Error database. Silahkan hubungi administrator.'));
                     } else if ($error == 3) {
                         showError(alertLogin('Koneksi ke Database gagal. Autentikasi gagal.'));
                     } else if ($error == 4) {
                         showError(alertLogin('Anda tidak boleh mengakses halaman sebelumnya karena belum login.
-        Silahkan login terlebih dahulu.'));
+                        <br>Silahkan login terlebih dahulu.'));
                     } else {
                         showError(alertLogin('Unknown Error.'));
                     }

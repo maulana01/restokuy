@@ -30,8 +30,8 @@ if (($_SESSION['jabatan'] != 'admin') && ($_SESSION['jabatan'] == 'pelayan')) {
 
 <body>
 
-  <header>
-    <nav class="navbar sticky-top fixed-top navbar-expand-lg navbar-light bg--four">
+  <header class="sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg--four">
       <div class="container-fluid">
         <button class="btn btn-sm" id="btn-sidebar">
           <img src="../../img/hamburger-menu.svg" alt="Menu" class="font-primary">
@@ -58,7 +58,7 @@ if (($_SESSION['jabatan'] != 'admin') && ($_SESSION['jabatan'] == 'pelayan')) {
     <div class="row">
 
       <div class="col-2 bg--third side" id="sidebars">
-        <ul class="nav flex-column my-3 nav-sidebar">
+        <ul class="nav flex-column my-3 nav-sidebar position-fixed">
           <li>
             <a href="../dashboard.php" class="nav-link font-primary">
               <img src="../../img/icon-dashboard.svg" alt="Dashboard" class="pb-2">

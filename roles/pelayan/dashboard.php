@@ -57,7 +57,7 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
   <main class="container-fluid">
     <div class="row">
       <div class="col-2 bg--third side" id="sidebars">
-        <ul class="nav flex-column my-3 nav-sidebar">
+        <ul class="nav flex-column my-3 nav-sidebar position-fixed">
           <li>
             <a href="./dashboard.php" class="nav-link font-primary">
               <img src="./../../img/icon-dashboard.svg" alt="Dashboard" class="pb-2">
