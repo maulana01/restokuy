@@ -1,6 +1,7 @@
 <?php
 include_once("../../../config/functions.php");
 session_start();
+$pegawai_id = $_SESSION['id_pegawai'];
 if (!isset($_SESSION["username"])) {
   header("Location: ../../../index.php?error=4");
 }
@@ -74,6 +75,7 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
       <div class="col m-4">
         <h2 class="font-primary">Informasi Pesanan</h2>
         <a href="./pesanan.php" class="btn font-btn bg--third font-white my-4">Pesanan</a>
+        <?php tambahPesanan(); ?>
         <!-- Alert -->
 
         <?php $nopesanan = getNoPesanan(); ?>
@@ -101,7 +103,7 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
                   <label for="exampleNoMeja" class="form-label">No Meja</label>
                 </div>
                 <div class="col-auto">
-                  <input type="text" class="form-control" id="exampleNoMeja" name="no_meja" required>
+                  <input type="text" class="form-control" id="exampleNoMeja" name="no_meja">
                 </div>
               </div>
               <div class="row mb-3">
@@ -117,18 +119,25 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
                     <tbody>
                       <!-- Foreach -->
                       <?php tambahDetailPesanan(); ?>
-
+                      <?php hapusDetailPesanan(); ?>
                       <!-- Foreach -->
                       <?php $data = tampilDetailPesananTerbaru(); ?>
                       <?php foreach ($data as $datadetailpesanan) { ?>
                         <tr>
                           <td><?php echo $datadetailpesanan['nama_menu']; ?></td>
                           <td>
-                            <input class="form-control form-control-sm" type="number" value="1" min="1" max="100" style="width: 5em;" autofocus>
+                            <input class="form-control form-control-sm" type="number" value="0" min="0" max="100" style="width: 5em;" id="jumlah<?= $datadetailpesanan['id_menu'];; ?>" onchange="return operasi()" autofocus>
                           </td>
-                          <td class="text-center">
-                            Rp <?php echo $datadetailpesanan['harga_menu']; ?>
+                          <td class="text-end">
                             <form action="" method="post">
+                              <input type="text" class="form-control form-control-sm fs-5" readonly value="<?= $datadetailpesanan['no_pesanan']; ?>" name="no_pesanan" hidden>
+                              <input type="text" class="form-control form-control-sm fs-5" readonly value="<?= $datadetailpesanan['id_menu']; ?>" name="id_menu" hidden>
+                              <input type="text" class="form-control form-control-sm fs-5" readonly value="<?= $pegawai_id; ?>" name="id_pegawai" hidden>
+
+                              <input type="text" class="form-control form-control-sm fs-5" readonly value="<?= $datadetailpesanan['harga_menu']; ?>" id="harga<?= $datadetailpesanan['id_menu']; ?>" hidden>
+
+                              <span id="hargaMenu<?= $datadetailpesanan['id_menu']; ?>">0</span>
+
                               <button name="hapus_list_pesanan" class="btn btn-sm font-btn bg--secondary font-white">hapus</button>
                             </form>
                           </td>
@@ -139,8 +148,9 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
                     <tfoot class="table-light">
                       <tr>
                         <td>Total</td>
-                        <td colspan="2" class="text-end">Rp 800.000.000</td>
-                        <td>&nbsp;</td>
+                        <td colspan="2" class="text-end">
+                          <input type="text" class="form-control-plaintext form-control-sm text-end fs-5" readonly id="total" value="0">
+                        </td>
                       </tr>
                     </tfoot>
                   </table>
@@ -188,6 +198,7 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
   <!-- Option 1: Bootstrap Bundle with Popper -->
   <!-- <script src="./../../js/bootstrap.bundle.min.js"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <script>
     // $('#btn-sidebar').click(function () {
     //   $('#sidebar').hide();
@@ -196,11 +207,34 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
       document.getElementById('sidebars').classList.toggle('side');
     })
 
-    document.getElementsByName('hapus_list_pesanan').forEach(element => {
-      element.addEventListener('click', function(e) {
-        e.preventDefault();
-      });
-    });
+    function operasi() {
+      let pesan = new Array();
+      let jumlah = new Array();
+      let total_harga = 0;
+      let total = 0;
+      for (let a = 0; a <= 100; a++) {
+        pesan[a] = $("#harga" + a).val();
+        jumlah[a] = $("#jumlah" + a).val();
+      }
+
+      for (let a = 0; a < pesan.length; a++) {
+        if (pesan[a] == null || pesan[a] == "") {
+          pesan[a] = 0;
+          jumlah[a] = 0;
+        }
+        total_harga += Number(pesan[a] * jumlah[a]);
+        total = Number(pesan[a] * jumlah[a]);
+        $("#hargaMenu" + a).text(total);
+      }
+      $("#total").val(total_harga);
+      return $("#totalHarga").text(total_harga);
+    }
+    // document.getElementsByName('hapus_list_pesanan').forEach(element => {
+    //   element.addEventListener('click', function(e) {
+    //     e.preventDefault();
+    //     e.stopPropagation();
+    //   });
+    // });
 
     // document.getElementsByName('btn_tambah_menu').forEach(element => {
     //   element.addEventListener('click', function(e) {
