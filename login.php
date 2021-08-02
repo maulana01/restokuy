@@ -5,7 +5,7 @@ if ($db->connect_errno == 0) {
     if (isset($_POST["BtnLogin"])) {
         $username = $db->escape_string($_POST["username"]);
         $password = $db->escape_string($_POST["password"]);
-        $sql = "SELECT a.id_akun as id_akun, a.username as username, p.jabatan as jabatan FROM akun a
+        $sql = "SELECT a.id_akun as id_akun, a.username as username, p.id_pegawai as id_pegawai, p.jabatan as jabatan FROM akun a
                 JOIN pegawai p on a.id_akun = p.id_akun
                 WHERE username='$username' AND password='$password'";
         $res = $db->query($sql);

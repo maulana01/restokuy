@@ -135,7 +135,7 @@ if (($_SESSION['jabatan'] != 'koki') && ($_SESSION['jabatan'] == 'admin')) {
                     <div class="modal-content">
                       <div class="modal-header">
                         <img src="../../img/question-circle-fill.svg" alt="question">
-                        <h5 class="modal-title ms-2" id="exampleModalLabel">Konfirmasi Hapus Data</h5>
+                        <h5 class="modal-title ms-2" id="exampleModalLabel">Konfirmasi Ubah Data</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">

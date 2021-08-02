@@ -729,15 +729,79 @@ function getDataPesananDanDetailPesanan($no_pesanan)
 {
 	$db = dbConnect();
 	if ($db->connect_errno == 0) {
-		$res = $db->query("SELECT ps.*, dtps.* FROM pesanan ps JOIN detail_pesanan dtps WHERE ps.no_pesanan=dtps.no_pesanan AND ps.no_pesanan='$no_pesanan'");
+		$res = $db->query("SELECT ps.*, dtsp.*, mn.* FROM pesanan ps JOIN detail_pesanan dtsp JOIN menu mn WHERE ps.no_pesanan='$no_pesanan' AND ps.no_pesanan=dtsp.no_pesanan");
 		if ($res) {
-			$data = $res->fetch_all(MYSQLI_ASSOC);
-			$res->free();
-			return $data;
+			if ($res->num_rows > 0) {
+				$data = $res->fetch_array();
+				$res->free();
+				return $data;
+			} else
+				return FALSE;
 		} else
 			return FALSE;
 	} else
 		return FALSE;
+}
+
+function getDataMenuByNoPesanan($no_pesanan)
+{
+	$db = dbConnect();
+	if ($db->connect_errno == 0) {
+		$res = $db->query("SELECT dtsp.*, mn.* FROM detail_pesanan dtsp JOIN menu mn WHERE dtsp.no_pesanan='$no_pesanan' AND dtsp.id_menu=mn.id_menu");
+		if ($res) {
+			if ($res->num_rows > 0) {
+				$data = $res->fetch_all(MYSQLI_ASSOC);
+				$res->free();
+				return $data;
+			} else
+				return FALSE;
+		} else
+			return FALSE;
+	} else
+		return FALSE;
+}
+
+function ubahStatusPesanan()
+{
+	if (isset($_POST["ubahStatusPesanan"])) {
+		$db = dbConnect();
+		if ($db->connect_errno == 0) {
+
+			$no_pesanan     	= $db->escape_string($_POST["no_pesanan"]);
+			$status		        = $db->escape_string($_POST["status"]);
+			// Susun query insert
+			$sql = "UPDATE pesanan SET no_pesanan='$no_pesanan', status='$status' WHERE no_pesanan='$no_pesanan'";
+
+			// Eksekusi query insert
+			$res = $db->query($sql);
+			if ($res === TRUE) {
+				if ($db->affected_rows > 0) { // jika ada penambahan data
+				?>
+					<!-- Alert Berhasil -->
+					<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+						<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+							<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+						</symbol>
+						<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
+							<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+						</symbol>
+					</svg>
+					<div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
+						<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
+							<use xlink:href="#check-circle-fill" />
+						</svg>
+						<div>
+							Pesanan Dengan No : <?php echo $no_pesanan; ?> Sudah Selesai!
+						</div>
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+				<?php
+					echo '<meta http-equiv="refresh" content="3;URL=pemesanan.php" />';
+				}
+			}
+		} else
+			echo "Gagal koneksi" . (DEVELOPMENT ? " : " . $db->connect_error : "") . "<br>";
+	}
 }
 /*========================== END CRUD Pesanan Pelayan ==========================*/
 

@@ -92,21 +92,25 @@ if (($_SESSION['jabatan'] != 'koki') && ($_SESSION['jabatan'] == 'admin')) {
           if ($datadetail = getDataPesananDanDetailPesanan($no_pesanan)) {
         ?>
             <div class="mt-3 mb-3">
-              <h5>No Pesanan : </h5>
-              <h5><?php echo $datadetail['no_pesanan']; ?></h5>
+              <h5>No Pesanan : <span><?php echo $datadetail['no_pesanan']; ?></span>
+              </h5>
             </div>
 
             <div class="mt-3 mb-3">
-              <h5>Nomor Meja</h5>
-              <h5><?php echo $datadetail['no_meja']; ?></h5>
+              <h5>Nomor Meja : <span><?php echo $datadetail['no_meja']; ?></span>
+              </h5>
             </div>
 
             <div class="mt-3 mb-5">
               <h5>List Pesanan : </h5>
-              <h5><?php echo $datadetail['id_menu']; ?></h5>
-            </div>
-            <div class="mt-3 mb-5">
-              <h5>skfasfsakfjs</h5>
+              <?php $tes = getDataMenuByNoPesanan($no_pesanan); ?>
+              <ul>
+                <?php foreach ($tes as $t) { ?>
+                  <li>
+                    <h5><?php echo $t['nama_menu']; ?></h5>
+                  </li>
+                <?php } ?>
+              </ul>
             </div>
 
             <a href="pemesanan.php" class="btn btn-sm bg--four font-btn font-white mt-3 mb-3">selesai</a>

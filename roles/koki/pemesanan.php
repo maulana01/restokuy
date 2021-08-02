@@ -79,8 +79,10 @@ if (($_SESSION['jabatan'] != 'koki') && ($_SESSION['jabatan'] == 'admin')) {
       </div>
 
       <div class="col m-5">
-        <h2 class="font-primary">Informasi Pemesanan</h2>
-        <table class="mt-5 table table-bordered table-hover">
+        <h2 class="font-primary mb-2">Informasi Pemesanan</h2>
+        <!-- Alert -->
+        <?php ubahStatusPesanan(); ?>
+        <table class="mt-4 table table-bordered table-hover">
           <thead class="table-light">
             <tr>
               <th>No Pesanan</th>
@@ -104,25 +106,27 @@ if (($_SESSION['jabatan'] != 'koki') && ($_SESSION['jabatan'] == 'admin')) {
                 <td><?php echo ucfirst($datapesananstatusbelumselesai['status']); ?></td>
                 <td><?php echo $datapesananstatusbelumselesai['nama_pegawai']; ?></td>
                 <td class="text-center">
-                  <button class="btn btn-sm bg--four font-btn font-white">SELESAI</button>
-                  <a href="./detail-pemesanan.php?no_pesanan=<?= $datapesananstatusbelumselesai['no_pesanan']; ?>" class="btn btn-sm bg--primary font-btn font-white">Detail</a>
+                  <button data-bs-toggle="modal" data-bs-target="#statusPesanan<?= $datapesananstatusbelumselesai['no_pesanan']; ?>" class="btn btn-sm bg--four font-btn font-white">Selesai</button>
+                  <a href="./detail-pemesanan.php?no_pesanan=<?= $datapesananstatusbelumselesai['no_pesanan']; ?>" class=" btn btn-sm bg--primary font-btn font-white">Detail</a>
                 </td>
               </tr>
               <!-- Modal -->
               <form action="" method="post">
-                <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="statusPesanan<?= $datapesananstatusbelumselesai['no_pesanan']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <input type="hidden" name="no_pesanan" value="<?= $datapesananstatusbelumselesai['no_pesanan']; ?>">
+                  <input type="hidden" name="status" value="selesai">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <img src="../../../img/question-circle-fill.svg" alt="question">
-                        <h5 class="modal-title ms-2" id="exampleModalLabel">Konfirmasi Hapus Data</h5>
+                        <img src="../../img/question-circle-fill.svg" alt="question">
+                        <h5 class="modal-title ms-2" id="exampleModalLabel">Konfirmasi Ubah Data</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        <p>Apakah Anda Yakin Ingin Menghapus ?</p>
+                        <p>Apakah Anda Yakin Ingin Merubah Status Pesanan Menjadi Selesai?</p>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-font bg--primary font-white" data-bs-dismiss="modal">Ya</button>
+                        <button name="ubahStatusPesanan" type="submit" class="btn btn-font bg--primary font-white" data-bs-dismiss="modal">Ya</button>
                         <button type="button" class="btn btn-font bg--four font-white" data-bs-dismiss="modal">Tidak</button>
                       </div>
                     </div>
