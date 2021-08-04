@@ -675,7 +675,7 @@ function tambahDetailPesanan()
 			$no_pesanan	        = $db->escape_string($_POST["no_pesanan"]);
 			$id_menu	        = $db->escape_string($_POST["id_menu"]);
 			// Susun query insert
-			$sql = "INSERT INTO detail_pesanan(no_pesanan, id_menu, jumlah_pesanan, status)
+			$sql = "INSERT INTO detail_pesanan(no_pesanan, id_menu, jumlah_pesanan, `status`)
             VALUES('$no_pesanan', '$id_menu', '0', 'belum pasti')";
 
 			// Eksekusi query insert
@@ -769,7 +769,7 @@ function hapusDetailPesanan()
 			$no_pesanan	        = $db->escape_string($_POST["no_pesanan"]);
 			$id_menu	        = $db->escape_string($_POST["id_menu"]);
 			// Susun query insert
-			$sql = "DELETE FROM detail_pesanan WHERE no_pesanan = '$no_pesanan' AND id_menu = '$id_menu'";
+			$sql = "DELETE FROM detail_pesanan WHERE no_pesanan = $no_pesanan AND id_menu = $id_menu";
 			// Eksekusi query insert
 			$res = $db->query($sql);
 			if ($res === TRUE) {
@@ -777,7 +777,6 @@ function hapusDetailPesanan()
 					echo '<meta http-equiv="refresh" content="0;URL=pesanan-tambah.php" />';
 				}
 			} else {
-
 				echo '<meta http-equiv="refresh" content="0;URL=pesanan-tambah.php" />';
 			}
 		} else
@@ -1020,6 +1019,59 @@ function ubahStatusPesanan()
 	}
 }
 /*========================== END CRUD Pesanan Koki ==========================*/
+
+
+/*========================== Dashboard Kasir ==========================*/
+function getPesananBelumBayar() {
+	$db = dbConnect();
+	if ($db->connect_errno == 0) {
+		$res = $db->query("SELECT count(*) as no_transaksi
+						 FROM transaksi WHERE `status` = 'belum dibayar'");
+		if ($res) {
+			$data = $res->fetch_object();
+			$banyakPesanan = $data->no_transaksi;
+			$res->free();
+			return $banyakPesanan;
+		} else
+			return FALSE;
+	} else
+		return FALSE;
+}
+/*========================== END Dashboard Kasir ==========================*/
+
+/*========================== CRUD Pembayaran Kasir ==========================*/
+function getListPembayaran() {
+	$db = dbConnect();
+	if ($db->connect_errno == 0) {
+		$res = $db->query("SELECT t.no_transaksi, t.no_pesanan, total_bayar, t.status, (SELECT nama_pegawai FROM pegawai WHERE id_pegawai = p.id_pegawai) as nama FROM transaksi t JOIN pesanan p ON p.no_pesanan = t.no_pesanan WHERE t.status = 'belum dibayar'");
+		if ($res) {
+			$data = $res->fetch_all(MYSQLI_ASSOC);
+			$res->free();
+			return $data;
+		} else
+			return FALSE;
+	} else
+		return FALSE;
+}
+
+function getListPembayaranLunas() {
+	$db = dbConnect();
+	if ($db->connect_errno == 0) {
+		$res = $db->query("SELECT t.no_transaksi, t.no_pesanan, total_bayar, t.status, (SELECT nama_pegawai FROM pegawai WHERE id_pegawai = t.id_pegawai) as nama FROM transaksi t JOIN pesanan p ON p.no_pesanan = t.no_pesanan WHERE t.status = 'dibayar'");
+		if ($res) {
+			$data = $res->fetch_all(MYSQLI_ASSOC);
+			$res->free();
+			return $data;
+		} else
+			return FALSE;
+	} else
+		return FALSE;
+}
+/*========================== END CRUD Pembayaran Kasir ==========================*/
+
+/*========================== Rekapitulasi Kasir ==========================*/
+
+/*========================== END Rekapitulasi Kasir ==========================*/
 
 function alertLogin($msg)
 {
