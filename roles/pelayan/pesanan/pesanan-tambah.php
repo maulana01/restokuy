@@ -118,6 +118,7 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
                     </thead>
                     <tbody>
                       <?php hapusDetailPesanan(); ?>
+                      <?php tambahDetailPesanan(); ?>
                       <!-- Foreach -->
                       <?php $data = tampilDetailPesananTerbaru(); ?>
                       <?php foreach ($data as $datadetailpesanan) { ?>
