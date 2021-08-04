@@ -86,6 +86,7 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
               <th>No Pesanan</th>
               <th>Tanggal Pesanan</th>
               <th>No Meja</th>
+              <th>Status</th>
               <th colspan="2" class="text-center">Aksi</th>
             </tr>
           </thead>
@@ -99,6 +100,7 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
                 <td><?php echo $datapesanan['no_pesanan']; ?></td>
                 <td><?php echo $datapesanan['tgl_pesanan']; ?></td>
                 <td><?php echo $datapesanan['no_meja']; ?></td>
+                <td><?php echo ucfirst($datapesanan['status']); ?></td>
                 <td class="text-center">
                   <a href="./pesanan-edit.php" class="btn btn-sm bg--four font-btn font-white">Edit</a>
                   <button class="btn btn-sm bg--primary font-btn font-white" data-bs-toggle="modal" data-bs-target="#hapusModal">Hapus</button>
