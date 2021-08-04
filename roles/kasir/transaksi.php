@@ -77,35 +77,36 @@ if (($_SESSION['jabatan'] != 'kasir') && ($_SESSION['jabatan'] == 'admin')) {
           </li>
         </ul>
       </div>
-
       <div class="col m-5">
         <h2 class="font-primary">Informasi Pembayaran</h2>
         <table class="mt-5 table table-bordered table-hover">
           <thead class="table-light">
             <tr>
-              <th>NO Transaksi</th>
+              <th>No Transaksi</th>
+              <th>No Pesanan</th>
               <th>Total Bayar</th>
               <th>Status</th>
-              <th>ID Pegawai</th>
-              <th>NO Pesanan</th>
-              <th>ID Menu</th>
+              <th>Pelayan</th>
               <th colspan="2" class="text-center">Aksi</th>
             </tr>
           </thead>
           <tbody>
+            <?php $listPesanan = getListPembayaran();?>
             <!-- Foreach -->
-            <tr>
-              <td>001</td>
-              <td>Rp. 5000</td>
-              <td>Ngutang</td>
-              <td>MLNAKNTL69</td>
-              <td>123123112</td>
-              <td>MKN69</td>
-              <td class="text-center">
-                <button class="btn btn-sm bg--four font-btn font-white">Lunas</button>
-              </td>
-            </tr>
-            <!-- foreach -->
+            <?php foreach ($listPesanan as $pesanan) {
+              ?>
+              <tr>
+                <td><?= $pesanan['no_transaksi']; ?></td>
+                <td><?= $pesanan['no_pesanan']; ?></td>
+                <td><?= "Rp " . number_format($pesanan['total_bayar'], 0, '.', '.'); ?></td>
+                <td class="fw-bold"><?= strtoupper($pesanan['status']); ?></td>
+                <td><?= $pesanan['nama']; ?></td>
+                <td class="text-center">
+                  <button class="btn btn-sm bg--four font-btn font-white">Lunas</button>
+                </td>
+              </tr>
+              <?php } ?>
+              <!-- foreach -->
           </tbody>
         </table>
 
@@ -113,29 +114,31 @@ if (($_SESSION['jabatan'] != 'kasir') && ($_SESSION['jabatan'] == 'admin')) {
         <table class="table table-bordered table-hover">
           <thead class="table-light">
             <tr>
-              <th>NO Transaksi</th>
+              <th>No Transaksi</th>
+              <th>No Pesanan</th>
               <th>Total Bayar</th>
               <th>Status</th>
-              <th>ID Pegawai</th>
-              <th>NO Pesanan</th>
-              <th>ID Menu</th>
+              <th>Nama Kasir</th>
               <th colspan="2" class="text-center">Aksi</th>
             </tr>
           </thead>
           <tbody>
+            <?php $listPesananLunas = getListPembayaranLunas();?>
             <!-- Foreach -->
+            <?php foreach ($listPesananLunas as $pesanan) {
+              ?>
             <tr>
-              <td>001</td>
-              <td>Rp. 5000</td>
-              <td>LUNAS!</td>
-              <td>MLNAKNTL69</td>
-              <td>123123112</td>
-              <td>MKN69</td>
+              <td><?= $pesanan['no_transaksi']; ?></td>
+              <td><?= $pesanan['no_pesanan']; ?></td>
+              <td><?= "Rp " . number_format($pesanan['total_bayar'], 0, '.', '.'); ?></td>
+              <td class="fw-bold"><?= strtoupper($pesanan['status']); ?></td>
+              <td><?= $pesanan['nama']; ?></td>
               <td class="text-center">
                 <button class="btn btn-sm bg--four font-btn font-white">Belum</button>
                 <button class="btn btn-sm bg--primary font-btn font-white">Cetak</button>
               </td>
             </tr>
+            <?php } ?>
             <!-- foreach -->
           </tbody>
         </table>
