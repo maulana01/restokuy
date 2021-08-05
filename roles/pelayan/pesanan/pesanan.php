@@ -75,7 +75,7 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
         <h2 class="font-primary">Informasi Pesanan</h2>
         <a href="./pesanan-tambah.php" class="btn font-btn bg--third font-white my-4">Tambah</a>
         <!-- Alert -->
-
+        <?php hapusPesanan(); ?>
         <!-- Alert -->
 
         <!-- List Pesanan Pelayan -->
@@ -102,13 +102,13 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
                 <td><?php echo $datapesanan['no_meja']; ?></td>
                 <td><?php echo ucfirst($datapesanan['status']); ?></td>
                 <td class="text-center">
-                  <a href="./pesanan-edit.php" class="btn btn-sm bg--four font-btn font-white">Edit</a>
-                  <button class="btn btn-sm bg--primary font-btn font-white" data-bs-toggle="modal" data-bs-target="#hapusModal">Hapus</button>
+                  <a href="./pesanan-edit.php?no_pesanan=<?= $datapesanan['no_pesanan']; ?>" class="btn btn-sm bg--four font-btn font-white">Edit</a>
+                  <button class="btn btn-sm bg--primary font-btn font-white" data-bs-toggle="modal" data-bs-target="#hapusModal<?= $datapesanan['no_pesanan']; ?>">Hapus</button>
                 </td>
               </tr>
               <!-- Modal -->
               <form action="" method="post">
-                <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="hapusModal<?= $datapesanan['no_pesanan']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -117,10 +117,11 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
+                        <input type="hidden" name="no_pesanan" value="<?= $datapesanan['no_pesanan']; ?>">
                         <p>Apakah Anda Yakin Ingin Menghapus ?</p>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-font bg--primary font-white" data-bs-dismiss="modal">Ya</button>
+                        <button type="submit" class="btn btn-font bg--primary font-white" data-bs-dismiss="modal" name="btn_hapus_pesanan">Ya</button>
                         <button type="button" class="btn btn-font bg--four font-white" data-bs-dismiss="modal">Tidak</button>
                       </div>
                     </div>

@@ -122,34 +122,34 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
                       <!-- Foreach -->
                       <?php $data = tampilDetailPesananTerbaru(); ?>
                       <?php foreach ($data as $datadetailpesanan) { ?>
-                        <tr>
-                          <form action="" method="post">
+                        <form action="" method="post">
+                          <tr>
                             <td><?php echo $datadetailpesanan['nama_menu']; ?></td>
                             <td>
-                              <input name="jumlah_pesanan" class="form-control form-control-sm" type="number" value="0" min="0" max="100" style="width: 5em;" id="jumlah<?= $datadetailpesanan['id_menu']; ?>" onchange="return operasi()" autofocus>
+                              <input name=<?= "jumlah_pesanan" . $datadetailpesanan['id_menu']; ?> class="form-control form-control-sm" type="number" value="1" min="1" max="100" style="width: 5em;" id=<?= "jumlah" . $datadetailpesanan['id_menu']; ?> onchange="return operasi()" autofocus>
                             </td>
                             <td class="text-end">
                               <input type="text" class="form-control form-control-sm fs-5" readonly value="<?= $datadetailpesanan['no_pesanan']; ?>" name="no_pesanan" hidden>
-                              <input type="text" class="form-control form-control-sm fs-5" readonly value="<?= $datadetailpesanan['id_menu']; ?>" name="id_menu" hidden>
+                              <input type="text" class="form-control form-control-sm fs-5" readonly value="<?= $datadetailpesanan['id_menu']; ?>" name=<?= "id_menu" . $datadetailpesanan['id_menu']; ?> hidden>
                               <input type="text" class="form-control form-control-sm fs-5" readonly value="<?= $pegawai_id; ?>" name="id_pegawai" hidden>
 
                               <input name="total_bayar" type="text" class="form-control form-control-sm fs-5" readonly value="<?= $datadetailpesanan['harga_menu']; ?>" id="harga<?= $datadetailpesanan['id_menu']; ?>" hidden>
 
                               <span id="hargaMenu<?= $datadetailpesanan['id_menu']; ?>">0</span>
-
+                              
                               <button name="hapus_list_pesanan" class="btn btn-sm font-btn bg--secondary font-white">hapus</button>
                             </td>
-                          </form>
-                        </tr>
-                      <?php } ?>
-                      <!-- Batas -->
-                    </tbody>
-                    <tfoot class="table-light">
-                      <tr>
-                        <td>Total</td>
-                        <td colspan="2" class="text-end">
-                          <input type="text" class="form-control-plaintext form-control-sm text-end fs-5" readonly id="total" value="0">
-                        </td>
+                          </tr>
+                        </form>
+                        <?php } ?>
+                        <!-- Batas -->
+                      </tbody>
+                      <tfoot class="table-light">
+                        <tr>
+                          <td>Total</td>
+                          <td colspan="2" class="text-end">
+                            <input type="text" class="form-control-plaintext form-control-sm text-end fs-5" readonly id="total" name="harga_total">
+                          </td>
                       </tr>
                     </tfoot>
                   </table>
@@ -172,7 +172,7 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
                       <div class="row">
                         <div class="col-auto">
                           <h5 class="card-title"><?php echo $datamenu['nama_menu']; ?></h5>
-                          <p class="card-text">Rp. <?php echo $datamenu['harga_menu']; ?></p>
+                          <p class="card-text"><?php echo "Rp " . number_format($datamenu['harga_menu'], 0, ',', '.'); ?></p>
                           <!-- <h6 class="card-subtitle mb-2 text-muted">Stok 100</h6> -->
                         </div>
                         <div class="col d-flex justify-content-end align-items-center">
@@ -204,6 +204,10 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
     // })
     document.getElementById('btn-sidebar').addEventListener('click', function() {
       document.getElementById('sidebars').classList.toggle('side');
+    })
+
+    window.addEventListener("load", function() {
+      operasi();
     })
 
     function operasi() {
