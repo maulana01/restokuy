@@ -137,49 +137,11 @@ function tambahDataPegawai()
 				$db->query($sql2);
 
 				if ($db->affected_rows > 0) { // jika ada penambahan data
-?>
-					<!-- Alert Berhasil -->
-					<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-						<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-							<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-						</symbol>
-						<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-							<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-						</symbol>
-					</svg>
-					<div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
-						<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
-							<use xlink:href="#check-circle-fill" />
-						</svg>
-						<div>
-							Data Pegawai Berhasil Ditambah!
-						</div>
-						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-					</div>
-				<?php
+					alertBerhasil("Data Pegawai Berhasil Ditambah!");
 					echo '<meta http-equiv="refresh" content="3;URL=pegawai-tambah.php" />';
 				}
 			} else {
-				?>
-				<!-- Alert Gagal -->
-				<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-					<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-					</symbol>
-					<symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-					</symbol>
-				</svg>
-				<div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
-					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-						<use xlink:href="#exclamation-triangle-fill" />
-					</svg>
-					<div>
-						Gagal Menambahkan Data Pegawai!
-					</div>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-				</div>
-				<?php
+				alertGagal("Gagal Menambahkan Data Pegawai!");
 				echo '<meta http-equiv="refresh" content="3;URL=pegawai-tambah.php" />';
 			}
 		} else
@@ -199,66 +161,14 @@ function hapusDataPegawai()
 			$res = $db->query($sql);
 			if ($res) {
 				if ($db->affected_rows > 0) { // jika ada data terhapus
-					// Alert Berhasil
-					echo
-					'<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-					<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-					</symbol>
-					<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-					</symbol>
-				</svg>
-				<div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
-					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
-						<use xlink:href="#check-circle-fill" />
-					</svg>
-					<div>
-						Data Pegawai Berhasil Dihapus!
-					</div>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-				</div>';
+					alertBerhasil("Data Pegawai Berhasil Dihapus!");
 					echo '<meta http-equiv="refresh" content="3;URL=pegawai.php" />';
 				} else { // Jika sql sukses tapi tidak ada data yang dihapus
-					echo '
-				<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-					<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-					</symbol>
-					<symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-					</symbol>
-				</svg>
-				<div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
-					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-						<use xlink:href="#exclamation-triangle-fill" />
-					</svg>
-					<div>
-						Gagal Menghapus Data Pegawai dikarenakan data sudah tidak ada.
-					</div>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-				</div>';
+					alertGagal("Gagal Menghapus Data Pegawai dikarenakan data sudah tidak ada.");
 					echo '<meta http-equiv="refresh" content="3;URL=pegawai.php" />';
 				}
 			} else { // gagal query
-				echo '
-					<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-						<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-            				<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-          				</symbol>
-          				<symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-            				<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-          				</symbol>
-					</svg>
-					<div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
-						<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-					  		<use xlink:href="#exclamation-triangle-fill" />
-						</svg>
-						<div>
-					  		Gagal Menghapus Data Pegawai!
-						</div>
-						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-				  </div>';
+				alertGagal("Gagal Menghapus Data Pegawai!");
 				echo '<meta http-equiv="refresh" content="3;URL=pegawai.php" />';
 			}
 		} else
@@ -321,49 +231,11 @@ function updateDataPegawai()
 				$db->query($sql2);
 
 				if ($db->affected_rows > 0) { // jika ada penambahan data
-				?>
-					<!-- Alert Berhasil -->
-					<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-						<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-							<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-						</symbol>
-						<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-							<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-						</symbol>
-					</svg>
-					<div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
-						<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
-							<use xlink:href="#check-circle-fill" />
-						</svg>
-						<div>
-							Data Pegawai Berhasil Diubah!
-						</div>
-						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-					</div>
-				<?php
+					alertBerhasil("Data Pegawai Berhasil Diubah!");
 					echo '<meta http-equiv="refresh" content="3;URL=pegawai-edit.php?id_pegawai=' . $id_pegawai . '&id_akun=' . $id_akun . '" />';
 				}
 			} else {
-				?>
-				<!-- Alert Gagal -->
-				<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-					<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-					</symbol>
-					<symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-					</symbol>
-				</svg>
-				<div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
-					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-						<use xlink:href="#exclamation-triangle-fill" />
-					</svg>
-					<div>
-						Gagal Merubah Data Pegawai!
-					</div>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-				</div>
-				<?php
+				alertGagal("Gagal Merubah Data Pegawai!");
 				echo '<meta http-equiv="refresh" content="3;URL=pegawai-edit.php?id_pegawai=' . $id_pegawai . '&id_akun=' . $id_akun . '" />';
 			}
 		} else
@@ -412,49 +284,11 @@ function tambahDataMenu()
 			$res = $db->query($sql);
 			if ($res === TRUE) {
 				if ($db->affected_rows > 0) { // jika ada penambahan data
-				?>
-					<!-- Alert Berhasil -->
-					<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-						<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-							<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-						</symbol>
-						<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-							<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-						</symbol>
-					</svg>
-					<div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
-						<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
-							<use xlink:href="#check-circle-fill" />
-						</svg>
-						<div>
-							Data Menu Berhasil Ditambah!
-						</div>
-						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-					</div>
-				<?php
+					alertBerhasil("Data Menu Berhasil Ditambah!");
 					echo '<meta http-equiv="refresh" content="3;URL=menu-tambah.php" />';
 				}
 			} else {
-				?>
-				<!-- Alert Gagal -->
-				<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-					<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-					</symbol>
-					<symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-					</symbol>
-				</svg>
-				<div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
-					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-						<use xlink:href="#exclamation-triangle-fill" />
-					</svg>
-					<div>
-						Gagal Menambahkan Data Menu!
-					</div>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-				</div>
-			<?php
+				alertGagal("Gagal Menambahkan Data Menu!");
 				echo '<meta http-equiv="refresh" content="3;URL=menu-tambah.php" />';
 			}
 		} else
@@ -502,48 +336,10 @@ function updateDataMenu()
 			// Eksekusi query insert
 			$res = $db->query($sql);
 			if ($res === TRUE) {
-			?>
-				<!-- Alert Berhasil -->
-				<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-					<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-					</symbol>
-					<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-					</symbol>
-				</svg>
-				<div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
-					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
-						<use xlink:href="#check-circle-fill" />
-					</svg>
-					<div>
-						Data Menu Berhasil Diubah.
-					</div>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-				</div>
-			<?php
+				alertBerhasil("Data Menu Berhasil Diubah.");
 				echo '<meta http-equiv="refresh" content="3;URL=menu-edit.php?id_menu=' . $id_menu . '" />';
 			} else {
-			?>
-				<!-- Alert Gagal -->
-				<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-					<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-					</symbol>
-					<symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-					</symbol>
-				</svg>
-				<div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
-					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-						<use xlink:href="#exclamation-triangle-fill" />
-					</svg>
-					<div>
-						Gagal Merubah Data Menu!
-					</div>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-				</div>
-				<?php
+				alertGagal("Gagal Merubah Data Menu!");
 				echo '<meta http-equiv="refresh" content="3;URL=menu-edit.php?id_menu=' . $id_menu . '" />';
 			}
 		} else
@@ -563,66 +359,14 @@ function hapusDataMenu()
 			$res = $db->query($sql);
 			if ($res) {
 				if ($db->affected_rows > 0) { // jika ada data terhapus
-					// Alert Berhasil
-					echo
-					'<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-					<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-					</symbol>
-					<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-					</symbol>
-				</svg>
-				<div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
-					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
-						<use xlink:href="#check-circle-fill" />
-					</svg>
-					<div>
-						Data Menu Berhasil Dihapus!
-					</div>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-				</div>';
+					alertBerhasil("Data Menu Berhasil Dihapus!");
 					echo '<meta http-equiv="refresh" content="3;URL=menu.php" />';
 				} else { // Jika sql sukses tapi tidak ada data yang dihapus
-					echo '
-				<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-					<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-					</symbol>
-					<symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-					</symbol>
-				</svg>
-				<div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
-					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-						<use xlink:href="#exclamation-triangle-fill" />
-					</svg>
-					<div>
-						Gagal Menghapus Data Menu dikarenakan data sudah tidak ada!
-					</div>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-				</div>';
+					alertGagal("Gagal Menghapus Data Menu dikarenakan data sudah tidak ada!");
 					echo '<meta http-equiv="refresh" content="3;URL=menu.php" />';
 				}
 			} else { // gagal query
-				echo '
-					<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-						<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-            				<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-          				</symbol>
-          				<symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-            				<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-          				</symbol>
-					</svg>
-					<div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
-						<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-					  		<use xlink:href="#exclamation-triangle-fill" />
-						</svg>
-						<div>
-					  		Gagal Menghapus Data Menu!
-						</div>
-						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-				  </div>';
+				alertGagal("Gagal Menghapus Data Menu!");
 				echo '<meta http-equiv="refresh" content="3;URL=menu.php" />';
 			}
 		} else
@@ -676,16 +420,24 @@ function tambahDetailPesanan()
 			$id_menu	        = $db->escape_string($_POST["id_menu"]);
 			// Susun query insert
 			$sql = "INSERT INTO detail_pesanan(no_pesanan, id_menu, jumlah_pesanan, `status`)
-            VALUES('$no_pesanan', '$id_menu', '0', 'belum pasti')";
+            VALUES('$no_pesanan', '$id_menu', '1', 'belum pasti')";
 
 			// Eksekusi query insert
 			$res = $db->query($sql);
 			if ($res === TRUE) {
 				if ($db->affected_rows > 0) { // jika ada penambahan data
-					echo '<meta http-equiv="refresh" content="0;URL=pesanan-tambah.php" />';
+					if ($_SERVER['REQUEST_URI'] == "/restokuy/roles/pelayan/pesanan/pesanan-tambah.php") {
+						echo '<meta http-equiv="refresh" content="0;URL=pesanan-tambah.php" />';
+					} else {
+						echo "<meta http-equiv=\"refresh\" content=\"2;URL=pesanan-edit.php?no_pesanan=$no_pesanan\" />";
+					}
 				}
 			} else {
-				echo '<meta http-equiv="refresh" content="0;URL=pesanan-tambah.php" />';
+				if ($_SERVER['REQUEST_URI'] == "/restokuy/roles/pelayan/pesanan/pesanan-tambah.php") {
+					echo '<meta http-equiv="refresh" content="0;URL=pesanan-tambah.php" />';
+				} else {
+					echo "<meta http-equiv=\"refresh\" content=\"2;URL=pesanan-edit.php?no_pesanan=$no_pesanan\" />";
+				}
 			}
 		} else
 			echo "Gagal koneksi" . (DEVELOPMENT ? " : " . $db->connect_error : "") . "<br>";
@@ -764,20 +516,25 @@ function hapusDetailPesanan()
 {
 	if (isset($_POST["hapus_list_pesanan"])) {
 		$db = dbConnect();
+		$no_pesanan = $db->escape_string($_POST["no_pesanan"]);
+		$data = getDataDetailPesanan($no_pesanan);
 		if ($db->connect_errno == 0) {
-			// Bersihkan data
-			$no_pesanan	        = $db->escape_string($_POST["no_pesanan"]);
-			$id_menu	        = $db->escape_string($_POST["id_menu"]);
+			foreach ($data as $hasil) {
+				$id = $hasil['id_menu'];
+				if (isset($_POST["id_menu" . $id])) {
+					$id_menu = $db->escape_string($_POST["id_menu" . $id]);
+				}
+			}
 			// Susun query insert
 			$sql = "DELETE FROM detail_pesanan WHERE no_pesanan = $no_pesanan AND id_menu = $id_menu";
 			// Eksekusi query insert
 			$res = $db->query($sql);
-			if ($res === TRUE) {
-				if ($db->affected_rows > 0) { // jika ada penambahan data
+			if ($db->affected_rows > 0) { // jika ada penambahan data
+				if ($_SERVER['REQUEST_URI'] == "/restokuy/roles/pelayan/pesanan/pesanan-tambah.php") {
 					echo '<meta http-equiv="refresh" content="0;URL=pesanan-tambah.php" />';
+				} else {
+					echo "<meta http-equiv=\"refresh\" content=\"2;URL=pesanan-edit.php?no_pesanan=$no_pesanan\" />";
 				}
-			} else {
-				echo '<meta http-equiv="refresh" content="0;URL=pesanan-tambah.php" />';
 			}
 		} else
 			echo "Gagal koneksi" . (DEVELOPMENT ? " : " . $db->connect_error : "") . "<br>";
@@ -793,65 +550,40 @@ function tambahPesanan()
 			$tanggal = $db->escape_string($_POST["tgl"]);
 			$no_meja = $db->escape_string($_POST["no_meja"]);
 			$id_pegawai = $db->escape_string($_POST["id_pegawai"]);
+			$no_pesanan = $db->escape_string($_POST["no_pesanan"]);
+			$harga_total = $db->escape_string($_POST["harga_total"]);
 
-			$jumlah_pesanan	        = $db->escape_string($_POST["jumlah_pesanan"]);
-			$no_pesanan	        = $db->escape_string($_POST["no_pesanan"]);
-			$id_menu	        = $db->escape_string($_POST["id_menu"]);
+			$query_select_jumlah = "SELECT * FROM detail_pesanan WHERE no_pesanan = $no_pesanan AND `status` = 'belum pasti'";
+			$res_jumlah = $db->query($query_select_jumlah);
 
 			// Susun query insert
 			$sql = "INSERT INTO pesanan(no_pesanan, tgl_pesanan, no_meja, `status`, id_pegawai) VALUES 
 			('', '$tanggal', '$no_meja', 'belum selesai', '$id_pegawai')";
 
+
 			// Eksekusi query insert
 			$res = $db->query($sql);
-			if ($res === TRUE) {
+			if ($res) {
+				foreach ($res_jumlah->fetch_all(MYSQLI_ASSOC) as $hasil) {
+					$id = $hasil['id_menu'];
+					$jumlah = $db->escape_string($_POST["jumlah_pesanan" . $id]);
+					$id_menu = $db->escape_string($_POST["id_menu" . $id]);
 
-				$sql2 = "UPDATE detail_pesanan SET jumlah_pesanan='$jumlah_pesanan', status='dipesan' WHERE no_pesanan='$no_pesanan' and id_menu='$id_menu'";
+					$sql2 = "UPDATE detail_pesanan SET jumlah_pesanan= '$jumlah', status='dipesan' WHERE no_pesanan='$no_pesanan' and id_menu='$id_menu'";
+					$update_jumlah = $db->query($sql2);
+				}
 
-				$db->query($sql2);
+				$sql3 = "INSERT INTO transaksi(no_transaksi, total_bayar, `status`, id_pegawai, no_pesanan) VALUES ('', $harga_total, 'belum dibayar', $id_pegawai, $no_pesanan)";
+				$insert_transaksi = $db->query($sql3);
+
 
 				if ($db->affected_rows > 0) { // jika ada penambahan data
-					echo
-					'<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-					<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-					</symbol>
-					<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-					</symbol>
-				</svg>
-				<div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
-					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
-						<use xlink:href="#check-circle-fill" />
-					</svg>
-					<div>
-						Data Pesanan Berhasil Ditambah!
-					</div>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-				</div>';
+					alertBerhasil("Data Pesanan Berhasil Ditambah!");
 					echo '<meta http-equiv="refresh" content="0;URL=pesanan-tambah.php" />';
 				}
 			} else {
-				echo '
-					<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-						<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-            				<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-          				</symbol>
-          				<symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-            				<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-          				</symbol>
-					</svg>
-					<div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
-						<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-					  		<use xlink:href="#exclamation-triangle-fill" />
-						</svg>
-						<div>
-					  		Gagal Menambah Data Pesanan!
-						</div>
-						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-				  </div>';
+				alertGagal("Gagal Menambah Data Pesanan!");
 				echo '<meta http-equiv="refresh" content="0;URL=pesanan-tambah.php" />';
-				echo "gaga;";
 			}
 		} else
 			echo "Gagal koneksi" . (DEVELOPMENT ? " : " . $db->connect_error : "") . "<br>";
@@ -862,7 +594,7 @@ function getListMenuTersedia()
 {
 	$db = dbConnect();
 	if ($db->connect_errno == 0) {
-		$res = $db->query("SELECT * FROM menu WHERE status='tersedia'
+		$res = $db->query("SELECT * FROM menu WHERE status='tersedia'	
 						 ORDER BY id_menu AND CAST(kategori_menu as CHAR)='minuman'");
 		if ($res) {
 			$data = $res->fetch_all(MYSQLI_ASSOC);
@@ -872,6 +604,105 @@ function getListMenuTersedia()
 			return FALSE;
 	} else
 		return FALSE;
+}
+
+function getDataDetailPesanan($no_pesanan)
+{
+	$db = dbConnect();
+	if ($db->connect_errno == 0) {
+		$res = $db->query("SELECT * FROM detail_pesanan JOIN menu ON menu.id_menu = detail_pesanan.id_menu 
+		WHERE no_pesanan = $no_pesanan");
+		if ($res) {
+			$data = $res->fetch_all(MYSQLI_ASSOC);
+			$res->free();
+			return $data;
+		} else
+			return FALSE;
+	} else
+		return FALSE;
+}
+
+function resetDetailPesanan()
+{
+	if (isset($_POST['btn_reset'])) {
+		$db = dbConnect();
+		$no_pesanan = $db->escape_string($_POST['no_pesanan']);
+		echo "<meta http-equiv=\"refresh\" content=\"2;URL=pesanan-edit.php?no_pesanan=$no_pesanan\" />";
+	}
+}
+
+function simpanDataPesanan()
+{
+	if (isset($_POST["btn_simpan"])) {
+		$db = dbConnect();
+		if ($db->connect_errno == 0) {
+			// Bersihkan data
+			$tanggal = $db->escape_string($_POST["tgl"]);
+			$no_meja = $db->escape_string($_POST["no_meja"]);
+			$id_pegawai = $db->escape_string($_POST["id_pegawai"]);
+			$no_pesanan = $db->escape_string($_POST["no_pesanan"]);
+			$harga_total = $db->escape_string($_POST["harga_total"]);
+
+			// Susun query insert
+			$sql = "UPDATE pesanan SET no_meja = $no_meja, id_pegawai = $id_pegawai WHERE no_pesanan = $no_pesanan";
+
+			// Eksekusi query insert
+			$res = $db->query($sql);
+			if ($res) {
+				foreach ($res_jumlah = getDataDetailPesanan($no_pesanan) as $hasil) {
+					$id = $hasil['id_menu'];
+					$jumlah = $db->escape_string($_POST["jumlah_pesanan" . $id]);
+					$id_menu = $db->escape_string($_POST["id_menu" . $id]);
+
+					$sql2 = "UPDATE detail_pesanan SET jumlah_pesanan= '$jumlah', status='dipesan' WHERE no_pesanan='$no_pesanan' and id_menu='$id_menu'";
+					$update_jumlah = $db->query($sql2);
+				}
+
+				$sql3 = "UPDATE transaksi SET total_bayar = $harga_total, id_pegawai = $id_pegawai WHERE no_pesanan = $no_pesanan";
+				$insert_transaksi = $db->query($sql3);
+
+
+				if ($db->affected_rows > 0) { // jika ada penambahan data
+					alertBerhasil("Data Pesanan Berhasil Diubah!");
+					echo "<meta http-equiv=\"refresh\" content=\"2;URL=pesanan-edit.php?no_pesanan=$no_pesanan\" />";
+				}
+			} else {
+				alertGagal("Gagal Mengubah Data Pesanan!");
+				echo "<meta http-equiv=\"refresh\" content=\"2;URL=pesanan-edit.php?no_pesanan=$no_pesanan\" />";
+			}
+		} else
+			echo "Gagal koneksi" . (DEVELOPMENT ? " : " . $db->connect_error : "") . "<br>";
+	}
+}
+
+function hapusPesanan()
+{
+	if (isset($_POST["btn_hapus_pesanan"])) {
+		$db = dbConnect();
+		if ($db->connect_errno == 0) {
+			$no_pesanan = $db->escape_string($_POST["no_pesanan"]);
+			// Susun query delete
+			$sql = "DELETE FROM transaksi WHERE no_pesanan = $no_pesanan";
+			// Eksekusi query delete
+			$res = $db->query($sql);
+			if ($res) {
+				if ($db->affected_rows > 0) { // jika ada data terhapus
+					// Alert Berhasil
+					$sql2 = "DELETE FROM pesanan WHERE no_pesanan = $no_pesanan";
+					$res2 = $db->query($sql2);
+					alertBerhasil("Data Pesanan Berhasil Dihapus!");
+					echo '<meta http-equiv="refresh" content="3;URL=pesanan.php" />';
+				} else { // Jika sql sukses tapi tidak ada data yang dihapus
+					alertGagal("Gagal Menghapus Data Pesanan dikarenakan data sudah tidak ada.");
+					echo '<meta http-equiv="refresh" content="3;URL=pesanan.php" />';
+				}
+			} else { // gagal query
+				alertGagal("Gagal Menghapus Data Pesanan!");
+				echo '<meta http-equiv="refresh" content="3;URL=pesanan.php" />';
+			}
+		} else
+			echo "Gagal koneksi" . (DEVELOPMENT ? " : " . $db->connect_error : "") . "<br>";
+	}
 }
 
 /*========================== END CRUD Pesanan Pelayan ==========================*/
@@ -908,49 +739,11 @@ function ubahStatusKetersediaanMenu()
 			$res = $db->query($sql);
 			if ($res === TRUE) {
 				if ($db->affected_rows > 0) { // jika ada penambahan data
-				?>
-					<!-- Alert Berhasil -->
-					<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-						<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-							<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-						</symbol>
-						<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-							<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-						</symbol>
-					</svg>
-					<div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
-						<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
-							<use xlink:href="#check-circle-fill" />
-						</svg>
-						<div>
-							Status Ketersediaan Menu Berhasil Diubah!
-						</div>
-						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-					</div>
-				<?php
+					alertBerhasil("Status Ketersediaan Menu Berhasil Diubah!");
 					echo '<meta http-equiv="refresh" content="3;URL=cek-menu.php" />';
 				}
 			} else {
-				?>
-				<!-- Alert Gagal -->
-				<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-					<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-					</symbol>
-					<symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-						<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-					</symbol>
-				</svg>
-				<div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
-					<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-						<use xlink:href="#exclamation-triangle-fill" />
-					</svg>
-					<div>
-						Gagal Merubah Status Ketersediaan Menu
-					</div>
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-				</div>
-				<?php
+				alertGagal("Gagal Merubah Status Ketersediaan Menu");
 				echo '<meta http-equiv="refresh" content="3;URL=cek-menu.php" />';
 			}
 		} else
@@ -991,26 +784,7 @@ function ubahStatusPesanan()
 			$res = $db->query($sql);
 			if ($res === TRUE) {
 				if ($db->affected_rows > 0) { // jika ada penambahan data
-				?>
-					<!-- Alert Berhasil -->
-					<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-						<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-							<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-						</symbol>
-						<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-							<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-						</symbol>
-					</svg>
-					<div class="alert alert-success d-flex align-items-center alert-dismissible fade show" role="alert">
-						<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:">
-							<use xlink:href="#check-circle-fill" />
-						</svg>
-						<div>
-							Pesanan Dengan No : <?php echo $no_pesanan; ?> Sudah Selesai!
-						</div>
-						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-					</div>
-	<?php
+					alertBerhasil("Pesanan Dengan No : $no_pesanan Sudah Selesai!");
 					echo '<meta http-equiv="refresh" content="3;URL=pemesanan.php" />';
 				}
 			}
@@ -1022,7 +796,8 @@ function ubahStatusPesanan()
 
 
 /*========================== Dashboard Kasir ==========================*/
-function getPesananBelumBayar() {
+function getPesananBelumBayar()
+{
 	$db = dbConnect();
 	if ($db->connect_errno == 0) {
 		$res = $db->query("SELECT count(*) as no_transaksi
@@ -1040,7 +815,8 @@ function getPesananBelumBayar() {
 /*========================== END Dashboard Kasir ==========================*/
 
 /*========================== CRUD Pembayaran Kasir ==========================*/
-function getListPembayaran() {
+function getListPembayaran()
+{
 	$db = dbConnect();
 	if ($db->connect_errno == 0) {
 		$res = $db->query("SELECT t.no_transaksi, t.no_pesanan, total_bayar, t.status, (SELECT nama_pegawai FROM pegawai WHERE id_pegawai = p.id_pegawai) as nama FROM transaksi t JOIN pesanan p ON p.no_pesanan = t.no_pesanan WHERE t.status = 'belum dibayar'");
@@ -1054,7 +830,8 @@ function getListPembayaran() {
 		return FALSE;
 }
 
-function getListPembayaranLunas() {
+function getListPembayaranLunas()
+{
 	$db = dbConnect();
 	if ($db->connect_errno == 0) {
 		$res = $db->query("SELECT t.no_transaksi, t.no_pesanan, total_bayar, t.status, (SELECT nama_pegawai FROM pegawai WHERE id_pegawai = t.id_pegawai) as nama FROM transaksi t JOIN pesanan p ON p.no_pesanan = t.no_pesanan WHERE t.status = 'dibayar'");
@@ -1067,42 +844,124 @@ function getListPembayaranLunas() {
 	} else
 		return FALSE;
 }
+
+function ubahStatusLunas()
+{
+	if (isset($_POST['btn_lunas'])) {
+		$db = dbConnect();
+		$no_transaksi = $db->escape_string($_POST['no_transaksi']);
+		$sql = "UPDATE transaksi SET `status` = 'dibayar' WHERE no_transaksi = $no_transaksi";
+		$res = $db->query($sql);
+		if ($res) {
+			if ($db->affected_rows) {
+				alertBerhasil("Berhasil Mengubah Status!");
+				echo '<meta http-equiv="refresh" content="1;URL=transaksi.php" />';
+			} else {
+				alertGagal("Gagal Mengubah Status!");
+				echo '<meta http-equiv="refresh" content="1;URL=transaksi.php" />';
+			}
+		} else {
+			alertGagal("Gagal Mengubah Status!");
+			echo '<meta http-equiv="refresh" content="1;URL=transaksi.php" />';
+		}
+	}
+}
+function ubahStatusBelumLunas()
+{
+	if (isset($_POST['btn_belum_lunas'])) {
+		$db = dbConnect();
+		$no_transaksi = $db->escape_string($_POST['no_transaksi']);
+		$sql = "UPDATE transaksi SET `status` = 'belum dibayar' WHERE no_transaksi = $no_transaksi";
+		$res = $db->query($sql);
+		if ($res) {
+			if ($db->affected_rows) {
+				alertBerhasil("Berhasil Mengubah Status!");
+				echo '<meta http-equiv="refresh" content="1;URL=transaksi.php" />';
+			} else {
+				alertGagal("Gagal Mengubah Status!");
+				echo '<meta http-equiv="refresh" content="1;URL=transaksi.php" />';
+			}
+		} else {
+			alertGagal("Gagal Mengubah Status!");
+			echo '<meta http-equiv="refresh" content="1;URL=transaksi.php" />';
+		}
+	}
+}
 /*========================== END CRUD Pembayaran Kasir ==========================*/
 
 /*========================== Rekapitulasi Kasir ==========================*/
+function getListRekap()
+{
+	$db = dbConnect();
+	if (isset($_POST['btn_filter'])) {
+		$tgl_awal = $db->escape_string($_POST['tanggal_awal']);
+		$tgl_akhir = $db->escape_string($_POST['tanggal_akhir']);
+		$sql = "SELECT * FROM transaksi t JOIN pesanan p ON p.no_pesanan = t.no_pesanan WHERE t.status = 'dibayar' AND tgl_pesanan BETWEEN '$tgl_awal' AND '$tgl_akhir'";
+	} else {
+		$sql = "SELECT * FROM transaksi t JOIN pesanan p ON p.no_pesanan = t.no_pesanan WHERE t.status = 'dibayar'";
+	}
+	if ($db->connect_errno == 0) {
+		$res = $db->query($sql);
+		if ($res) {
+			$data = $res->fetch_all(MYSQLI_ASSOC);
+			$res->free();
+			return $data;
+		} else
+			return FALSE;
+	} else
+		return FALSE;
+}
+
+function refreshFilter()
+{
+	if (isset($_POST['btn_filter'])) {
+		echo "
+			<div class=\"offset-2 col-auto gy-3\">
+			<form method=\"post\">
+			<button type=\"submit\"class=\"btn font-btn bg-secondary font-white\" name=\"btn_refresh\">Refresh Data</button>
+			</form>
+			</div>
+			";
+		if (isset($_POST['btn_refresh'])) {
+			echo '<meta http-equiv="refresh" content="0;URL=rekapitulasi.php" />';
+		}
+	}
+}
 
 /*========================== END Rekapitulasi Kasir ==========================*/
 
-function alertLogin($msg)
+function alertGagal($message)
 {
-	echo '
-	<!-- Alert -->
-	<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-		<symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
-			<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
-		</symbol>
-		<symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
-			<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-		</symbol>
-		<symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
-			<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
-		</symbol>
-	</svg>
-	<div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
-		<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-			<use xlink:href="#exclamation-triangle-fill" />
-		</svg>
-		<div>
-			' . $msg . '
-		</div>
-		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-	</div>';
+	echo "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display: none;\">
+					<symbol id=\"exclamation-triangle-fill\" fill=\"currentColor\" viewBox=\"0 0 16 16\">
+						<path d=\"M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z\" />
+					</symbol>
+				</svg>
+				<div class=\"alert alert-danger d-flex align-items-center alert-dismissible fade show\" role=\"alert\">
+					<svg class=\"bi flex-shrink-0 me-2\" width=\"24\" height=\"24\" role=\"img\" aria-label=\"Danger:\">
+						<use xlink:href=\"#exclamation-triangle-fill\" />
+					</svg>
+					<div>
+						$message
+					</div>
+					<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+				</div>";
 }
 
-function showError($message)
+function alertBerhasil($message)
 {
-	?>
-	<?php echo $message; ?>
-<?php
+	echo "<svg xmlns=\"http://www.w3.org/2000/svg\" style=\"display: none;\">
+		<symbol id=\"check-circle-fill\" fill=\"currentColor\" viewBox=\"0 0 16 16\">
+			<path d=\"M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z\" />
+		</symbol>
+	</svg>
+	<div class=\"alert alert-success d-flex align-items-center alert-dismissible fade show\" role=\"alert\">
+		<svg class=\"bi flex-shrink-0 me-2\" width=\"24\" height=\"24\" role=\"img\" aria-label=\"Success:\">
+			<use xlink:href=\"#check-circle-fill\" />
+		</svg>
+		<div>
+			$message
+		</div>
+		<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+	</div>";
 }
-?>
