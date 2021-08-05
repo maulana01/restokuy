@@ -81,7 +81,6 @@ if (($_SESSION['jabatan'] != 'kasir') && ($_SESSION['jabatan'] == 'admin')) {
 
       <div class="col m-5">
         <h2 class="font-primary">Informasi Rekapitulasi</h2>
-
         <div class="row mt-5">
           <form method="post" action="">
             <div class="row mb-3">
@@ -103,58 +102,42 @@ if (($_SESSION['jabatan'] != 'kasir') && ($_SESSION['jabatan'] == 'admin')) {
 
             <div class="row">
               <div class="offset-2 col-auto">
-                <button class="btn font-btn bg--third font-white">Filter</button>
-                <button class="btn font-btn bg--primary font-white">Cetak</button>
+                <button class="btn font-btn bg--third font-white" name="btn_filter">Filter</button>
+                <button class="btn font-btn bg--primary font-white" name="btn_cetak">Cetak</button>
               </div>
             </div>
           </form>
-          <table class="mt-5 table table-bordered table-hover">
-            <thead class="table-light">
-              <tr>
-                <th>NO Transaksi</th>
-                <th>Total Bayar</th>
-                <th>Status</th>
-                <th>ID Pegawai</th>
-                <th>NO Pesanan</th>
-                <th>ID Menu</th>
-                <th colspan="2" class="text-center">Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Foreach -->
-              <tr>
-                <td>001</td>
-                <td>Rp. 5000</td>
-                <td>Ngutang</td>
-                <td>MLNAKNTL69</td>
-                <td>123123112</td>
-                <td>MKN69</td>
-                <td class="text-center">
-                  <button class="btn btn-sm bg--four font-btn font-white">Lunas</button>
-                </td>
-              </tr>
-              <!-- foreach -->
-            </tbody>
-          </table>
-
-          <!-- Modal -->
-          <div class="modal fade" id="hapusModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <img src="../../../img/question-circle-fill.svg" alt="question">
-                  <h5 class="modal-title ms-2" id="exampleModalLabel">Konfirmasi Hapus Data</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <p>Apakah Anda Yakin Ingin Menghapus ?</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-font bg--primary font-white" data-bs-dismiss="modal">Ya</button>
-                  <button type="button" class="btn btn-font bg--four font-white" data-bs-dismiss="modal">Tidak</button>
-                </div>
-              </div>
-            </div>
+          <?php refreshFilter(); ?>
+        </div>
+        <div class="row">
+          <div class="col">
+            <table class="mt-5 table table-bordered table-hover">
+              <thead class="table-light">
+                <tr>
+                  <th>No Transaksi</th>
+                  <th>No Pesanan</th>
+                  <th>No Meja</th>
+                  <th>Tanggal</th>
+                  <th>Total Bayar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Foreach -->
+                <?php
+                $data = getListRekap();
+                foreach ($data as $rekap) {
+                ?>
+                  <tr>
+                    <td><?= $rekap['no_transaksi']; ?></td>
+                    <td><?= $rekap['no_pesanan']; ?></td>
+                    <td><?= $rekap['no_meja']; ?></td>
+                    <td><?= $rekap['tgl_pesanan']; ?></td>
+                    <td class="text-end"><?= "Rp " . number_format($rekap['total_bayar'], 0, ',', '.'); ?></td>
+                  </tr>
+                <?php } ?>
+                <!-- foreach -->
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
