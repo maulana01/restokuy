@@ -564,7 +564,7 @@ function tambahPesanan()
 			// Eksekusi query insert
 			$res = $db->query($sql);
 			if ($res) {
-				foreach ($res_jumlah->fetch_all(MYSQLI_ASSOC) as $hasil) {
+				foreach ($res_jumlah = getDataDetailPesanan($no_pesanan) as $hasil) {
 					$id = $hasil['id_menu'];
 					$jumlah = $db->escape_string($_POST["jumlah_pesanan" . $id]);
 					$id_menu = $db->escape_string($_POST["id_menu" . $id]);
@@ -579,11 +579,11 @@ function tambahPesanan()
 
 				if ($db->affected_rows > 0) { // jika ada penambahan data
 					alertBerhasil("Data Pesanan Berhasil Ditambah!");
-					echo '<meta http-equiv="refresh" content="0;URL=pesanan-tambah.php" />';
+					echo '<meta http-equiv="refresh" content="1;URL=pesanan-tambah.php" />';
 				}
 			} else {
 				alertGagal("Gagal Menambah Data Pesanan!");
-				echo '<meta http-equiv="refresh" content="0;URL=pesanan-tambah.php" />';
+				echo '<meta http-equiv="refresh" content="1;URL=pesanan-tambah.php" />';
 			}
 		} else
 			echo "Gagal koneksi" . (DEVELOPMENT ? " : " . $db->connect_error : "") . "<br>";
@@ -918,7 +918,7 @@ function refreshFilter()
 		echo "
 			<div class=\"offset-2 col-auto gy-3\">
 			<form method=\"post\">
-			<button type=\"submit\"class=\"btn font-btn bg-secondary font-white\" name=\"btn_refresh\">Refresh Data</button>
+			<button type=\"submit\" class=\"btn font-btn bg-secondary font-white\" name=\"btn_refresh\">Refresh Data</button>
 			</form>
 			</div>
 			";

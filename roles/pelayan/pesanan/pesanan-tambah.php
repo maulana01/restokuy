@@ -121,8 +121,8 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
                       <?php tambahDetailPesanan(); ?>
                       <!-- Foreach -->
                       <?php $data = tampilDetailPesananTerbaru(); ?>
-                      <?php foreach ($data as $datadetailpesanan) { ?>
-                        <form action="" method="post">
+                      <form action="" method="post">
+                        <?php foreach ($data as $datadetailpesanan) { ?>
                           <tr>
                             <td><?php echo $datadetailpesanan['nama_menu']; ?></td>
                             <td>
@@ -136,20 +136,20 @@ if (($_SESSION['jabatan'] != 'pelayan') && ($_SESSION['jabatan'] == 'admin')) {
                               <input name="total_bayar" type="text" class="form-control form-control-sm fs-5" readonly value="<?= $datadetailpesanan['harga_menu']; ?>" id="harga<?= $datadetailpesanan['id_menu']; ?>" hidden>
 
                               <span id="hargaMenu<?= $datadetailpesanan['id_menu']; ?>">0</span>
-                              
+
                               <button name="hapus_list_pesanan" class="btn btn-sm font-btn bg--secondary font-white">hapus</button>
                             </td>
                           </tr>
-                        </form>
                         <?php } ?>
-                        <!-- Batas -->
-                      </tbody>
-                      <tfoot class="table-light">
-                        <tr>
-                          <td>Total</td>
-                          <td colspan="2" class="text-end">
-                            <input type="text" class="form-control-plaintext form-control-sm text-end fs-5" readonly id="total" name="harga_total">
-                          </td>
+                      </form>
+                      <!-- Batas -->
+                    </tbody>
+                    <tfoot class="table-light">
+                      <tr>
+                        <td>Total</td>
+                        <td colspan="2" class="text-end">
+                          <input type="text" class="form-control-plaintext form-control-sm text-end fs-5" readonly id="total" name="harga_total">
+                        </td>
                       </tr>
                     </tfoot>
                   </table>
