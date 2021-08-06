@@ -928,6 +928,41 @@ function refreshFilter()
 	}
 }
 
+function getDataTransaksi($no_transaksi)
+{
+	$db = dbConnect();
+	if ($db->connect_errno == 0) {
+		$res = $db->query("SELECT tr.*, ps.*, dtps.*, mn.* FROM transaksi tr JOIN pesanan ps JOIN detail_pesanan dtps JOIN menu mn WHERE no_transaksi=$no_transaksi AND tr.no_pesanan=ps.no_pesanan and ps.no_pesanan=dtps.no_pesanan and dtps.id_menu=mn.id_menu");
+		if ($res) {
+			$data = $res->fetch_assoc();
+			$res->free();
+			return $data;
+		} else
+			return FALSE;
+	} else
+		return FALSE;
+}
+
+function getDataRekap()
+{
+	$db = dbConnect();
+	if (isset($_POST['btn_cetak'])) {
+		$tgl_awal = $db->escape_string($_POST['tanggal_awal']);
+		$tgl_akhir = $db->escape_string($_POST['tanggal_akhir']);
+		$sql = $db->query("SELECT * FROM transaksi t JOIN pesanan p ON p.no_pesanan = t.no_pesanan WHERE t.status = 'dibayar' AND tgl_pesanan BETWEEN '$tgl_awal' AND '$tgl_akhir'");
+		if ($db->connect_errno == 0) {
+			$res = $db->query($sql);
+			if ($res) {
+				$data = $res->fetch_all(MYSQLI_ASSOC);
+				$res->free();
+				return $data;
+			} else
+				return FALSE;
+		} else
+			return FALSE;
+	}
+}
+
 /*========================== END Rekapitulasi Kasir ==========================*/
 
 function alertGagal($message)

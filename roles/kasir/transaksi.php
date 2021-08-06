@@ -161,7 +161,7 @@ if (($_SESSION['jabatan'] != 'kasir') && ($_SESSION['jabatan'] == 'admin')) {
                   <form action="" method="post">
                     <input type="hidden" name="no_transaksi" value="<?= $pesanan['no_transaksi']; ?>">
                     <button class="btn btn-sm bg--four font-btn font-white" name="btn_belum_lunas">Belum</button>
-                    <button class="btn btn-sm bg--primary font-btn font-white" name="btn_cetak">Cetak</button>
+                    <a href="cetak-transaksi.php?no_transaksi=<?= $pesanan["no_transaksi"]; ?>" class="btn btn-sm bg--primary font-btn font-white" name="btn_cetak">Cetak</a>
                   </form>
                 </td>
               </tr>
