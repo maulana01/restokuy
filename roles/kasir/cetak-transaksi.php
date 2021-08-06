@@ -19,7 +19,7 @@ if (($_SESSION['jabatan'] != 'kasir') && ($_SESSION['jabatan'] == 'admin')) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
     <title>RestoKuy</title>
 </head>
 
@@ -30,19 +30,15 @@ if (($_SESSION['jabatan'] != 'kasir') && ($_SESSION['jabatan'] == 'admin')) {
                 <div class="row w-100 justify-content-between">
                     <div class="col-6">
                         <a href="transaksi.php">
-                            <h1 class="navbar-brand font-primary navbar-title">RestoKuy</h1>
+                            <a class="navbar-brand fs-1">RestoKuy</a>
                         </a>
-                    </div>
-                    <div class="col-6 px-0 text-end">
-                        <p class="m-0">Jalan Raya Cipocok Serang-Banten</p>
-                        <p>SMS : 0885 5240 7302</p>
                     </div>
                 </div>
             </nav>
         </header>
         <!-- INI BUAT PRINT, KALO DAH FIX CSS NYA, NONAKTIFIN KOMEN window.print() nya -->
         <script>
-            // window.print();
+            window.print();
         </script>
         <?php
         if (isset($_GET["no_transaksi"])) {
@@ -52,56 +48,51 @@ if (($_SESSION['jabatan'] != 'kasir') && ($_SESSION['jabatan'] == 'admin')) {
         ?>
                 <div class="mb-5 container">
                     <div class="card-body">
-                        <table class="">
+                        <table class="table">
                             <tr>
-                                <td width=150>
-                                    <h5>No. Transaksi</h5>
-                                </td>
-                                <td width=10%>
-                                    <h5>:</h5>
-                                </td>
-                                <td>
-                                    <h5><?php echo $dataTransaksi["no_transaksi"]; ?></h5>
-                                </td>
+                                <td>NOMOR TRANSAKSI</td>
+                                <td>:</td>
+                                <td><?php echo $dataTransaksi["no_transaksi"]; ?></td>
                             </tr>
                             <tr>
-                                <td>No. Pesanan</td>
+                                <td>NOMOR PESANAN</td>
                                 <td>:</td>
                                 <td><?php echo $dataTransaksi["no_pesanan"]; ?></td>
                             </tr>
                             <tr>
-                                <td>No. Meja</td>
+                                <td>NOMOR MEJA</td>
                                 <td>:</td>
                                 <td><?php echo $dataTransaksi["no_meja"]; ?></td>
                             </tr>
                             <tr>
-                                <td>Tanggal Pesan</td>
+                                <td>TANGGAL</td>
                                 <td>:</td>
-                                <td><?php echo $dataTransaksi["tgl_pesanan"]; ?></td>
+                                <td><?php echo date('d-m-Y', strtotime($dataTransaksi["tgl_pesanan"])); ?></td>
                             </tr>
                             <tr>
-                                <td>List Pesanan</td>
-                                <td>:</td>
-                                <?php $tes = getDataMenuByNoPesanan($dataTransaksi['no_pesanan']); ?>
-                                <td>
-                                    <ul>
-                                        <?php foreach ($tes as $t) { ?>
-                                            <li>
-                                                <h5><?php echo $t['nama_menu']; ?></h5>
-                                            </li>
-                                        <?php } ?>
-                                    </ul>
-                                </td>
+                                <td>LIST PESANAN</td>
+                                <td colspan="2">:</td>
                             </tr>
                         </table>
-                        <hr>
-                        <table class="table table-striped mb-3">
-                            <tr>
-                                <th>Total Bayar</th>
-                                <td>Rp <?php echo number_format($dataTransaksi["total_bayar"], 0, ",", "."); ?></td>
+                        <table class="table">
+                            <?php $list = getDataMenuByNoPesanan($dataTransaksi['no_pesanan']); ?>
+                            <?php foreach ($list as $t) { ?>
+                                <tr>
+                                    <td><?php echo $t['nama_menu']; ?></td>
+                                    <td><?php echo $t['jumlah_pesanan']; ?></td>
+                                    <td>x</td>
+                                    <td>Rp <?php echo number_format($t['harga_menu'], 0, ",", ".");?></td>
+                                    <td class="text-end">Rp <?php echo number_format($t['harga'], 0, ",", ".");?></td>
+                                </tr>
+                            <?php } ?>
+                        <!-- </table>
+                        <table class="table table-striped mb-3"> -->
+                            <tr class="table-light">
+                                <td class="fw-bold fs-5">Total Bayar</td>
+                                <td class="fw-bold fs-5 text-end" colspan="4">Rp <?php echo number_format($dataTransaksi["total_bayar"], 0, ",", "."); ?></td>
                             </tr>
                         </table>
-                        <div class="container">
+                        <!-- <div class="container">
                             <div class="row mb-4">
                                 <div class="col">
                                     <p class="text-center">Tanda Terima,</p>
@@ -126,13 +117,13 @@ if (($_SESSION['jabatan'] != 'kasir') && ($_SESSION['jabatan'] == 'admin')) {
                                     <p class="text-center">( .............................................. )</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
         <?php
             }
             // INI CERITANYA KLO DAH BERES PRINT, BALIK LAGI KE HALAMAN SEBELUMNYA, ABIS CSS FIX NTAR NONAKTIFIN JUGA KOMENNYA
-            // echo '<meta http-equiv="refresh" content="0; url=transaksi.php">';
+            echo '<meta http-equiv="refresh" content="0; url=transaksi.php">';
         }
 
 

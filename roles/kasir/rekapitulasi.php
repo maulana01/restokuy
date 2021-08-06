@@ -103,7 +103,7 @@ if (($_SESSION['jabatan'] != 'kasir') && ($_SESSION['jabatan'] == 'admin')) {
             <div class="row">
               <div class="offset-2 col-auto">
                 <button class="btn font-btn bg--third font-white" name="btn_filter">Filter</button>
-                <a href="cetak-rekap.php" class="btn font-btn bg--primary font-white" name="btn_cetak">Cetak</a>
+                <?php btnCetakRekap(); ?>
               </div>
             </div>
           </form>

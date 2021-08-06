@@ -498,7 +498,7 @@ function getDataMenuByNoPesanan($no_pesanan)
 {
 	$db = dbConnect();
 	if ($db->connect_errno == 0) {
-		$res = $db->query("SELECT dtsp.*, mn.* FROM detail_pesanan dtsp JOIN menu mn WHERE dtsp.no_pesanan='$no_pesanan' AND dtsp.id_menu=mn.id_menu");
+		$res = $db->query("SELECT dtsp.*, mn.*, (jumlah_pesanan * harga_menu) AS harga FROM detail_pesanan dtsp JOIN menu mn WHERE dtsp.no_pesanan='$no_pesanan' AND dtsp.id_menu=mn.id_menu");
 		if ($res) {
 			if ($res->num_rows > 0) {
 				$data = $res->fetch_all(MYSQLI_ASSOC);
@@ -946,23 +946,85 @@ function getDataTransaksi($no_transaksi)
 function getDataRekap()
 {
 	$db = dbConnect();
-	if (isset($_POST['btn_cetak'])) {
-		$tgl_awal = $db->escape_string($_POST['tanggal_awal']);
-		$tgl_akhir = $db->escape_string($_POST['tanggal_akhir']);
-		$sql = $db->query("SELECT * FROM transaksi t JOIN pesanan p ON p.no_pesanan = t.no_pesanan WHERE t.status = 'dibayar' AND tgl_pesanan BETWEEN '$tgl_awal' AND '$tgl_akhir'");
-		if ($db->connect_errno == 0) {
-			$res = $db->query($sql);
-			if ($res) {
-				$data = $res->fetch_all(MYSQLI_ASSOC);
-				$res->free();
-				return $data;
-			} else
-				return FALSE;
+	if (isset($_GET['tanggal_awal']) && isset($_GET['tanggal_akhir'])) {
+		$tgl_awal = $db->escape_string($_GET['tanggal_awal']);
+		$tgl_akhir = $db->escape_string($_GET['tanggal_akhir']);
+		$sql = "SELECT *, SUM(total_bayar) as total FROM transaksi t JOIN pesanan p ON p.no_pesanan = t.no_pesanan WHERE t.status = 'dibayar' AND tgl_pesanan BETWEEN '$tgl_awal' AND '$tgl_akhir'";
+	} else {
+		$sql = "SELECT * FROM transaksi t JOIN pesanan p ON p.no_pesanan = t.no_pesanan WHERE t.status = 'dibayar'";
+	}
+	$res = $db->query($sql);
+	if ($db->connect_errno == 0) {
+		$res = $db->query($sql);
+		if ($res) {
+			$data = $res->fetch_all(MYSQLI_ASSOC);
+			$res->free();
+			return $data;
 		} else
 			return FALSE;
+	} else
+		return FALSE;
+}
+
+function btnCetakRekap()
+{
+	$db = dbConnect();
+	if (isset($_POST['btn_filter'])) {
+		$tanggal_awal = $db->escape_string($_POST['tanggal_awal']);
+		$tanggal_akhir = $db->escape_string($_POST['tanggal_akhir']);
+		echo "<a href=\"cetak-rekap.php?tanggal_awal=$tanggal_awal&tanggal_akhir=$tanggal_akhir\" class=\"btn font-btn bg--primary font-white\" name=\"btn_cetak\">Cetak</a>";
+	} else {
+		echo "<a href=\"cetak-rekap.php\" class=\"btn font-btn bg--primary font-white\" name=\"btn_cetak\">Cetak</a>";
 	}
 }
 
+function getPeriodeCetak()
+{
+	$db = dbConnect();
+	$tanggal = array();
+	if (isset($_GET['tanggal_awal']) && isset($_GET['tanggal_akhir'])) {
+		$tgl_awal = $db->escape_string($_GET['tanggal_awal']);
+		$tgl_akhir = $db->escape_string($_GET['tanggal_akhir']);
+		$tanggal['awal'] = $tgl_awal;
+		$tanggal['akhir'] = $tgl_akhir;
+	} else {
+		$sql = "SELECT MAX(tgl_pesanan) as akhir FROM pesanan";
+		$res = $db->query($sql);
+		if ($res) {
+			$data = $res->fetch_assoc();
+			$tanggal['akhir'] = $data['akhir'];
+
+			$sql = "SELECT MIN(tgl_pesanan) as awal FROM pesanan";
+			$res = $db->query($sql);
+			$hasil = $res->fetch_assoc();
+			$tanggal['awal'] = $hasil['awal'];
+		}
+	}
+	return $tanggal;
+}
+
+function getTotalPendapatan()
+{
+	$db = dbConnect();
+	if (isset($_GET['tanggal_awal']) && isset($_GET['tanggal_akhir'])) {
+		$tgl_awal = $db->escape_string($_GET['tanggal_awal']);
+		$tgl_akhir = $db->escape_string($_GET['tanggal_akhir']);
+		$sql = "SELECT SUM(total_bayar) as total FROM transaksi t JOIN pesanan p ON p.no_pesanan = t.no_pesanan WHERE t.status = 'dibayar' AND tgl_pesanan BETWEEN '$tgl_awal' AND '$tgl_akhir'";
+	} else {
+		$sql = "SELECT SUM(total_bayar) as total FROM transaksi t JOIN pesanan p ON p.no_pesanan = t.no_pesanan WHERE t.status = 'dibayar'";
+	}
+	$res = $db->query($sql);
+	if ($db->connect_errno == 0) {
+		$res = $db->query($sql);
+		if ($res) {
+			$data = $res->fetch_assoc();
+			$res->free();
+			return $data;
+		} else
+			return FALSE;
+	} else
+		return FALSE;
+}
 /*========================== END Rekapitulasi Kasir ==========================*/
 
 function alertGagal($message)
