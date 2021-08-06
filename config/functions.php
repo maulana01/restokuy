@@ -403,7 +403,10 @@ function getNoPesanan()
 			$data = $res->fetch_object();
 			$nopesanan = $data->nopesanan;
 			$res->free();
-			return $nopesanan;
+			if ($nopesanan == null)
+				return 1;
+			else
+				return $nopesanan;
 		} else
 			return FALSE;
 	} else
