@@ -949,7 +949,7 @@ function getDataRekap()
 	if (isset($_GET['tanggal_awal']) && isset($_GET['tanggal_akhir'])) {
 		$tgl_awal = $db->escape_string($_GET['tanggal_awal']);
 		$tgl_akhir = $db->escape_string($_GET['tanggal_akhir']);
-		$sql = "SELECT *, SUM(total_bayar) as total FROM transaksi t JOIN pesanan p ON p.no_pesanan = t.no_pesanan WHERE t.status = 'dibayar' AND tgl_pesanan BETWEEN '$tgl_awal' AND '$tgl_akhir'";
+		$sql = "SELECT * FROM transaksi t JOIN pesanan p ON p.no_pesanan = t.no_pesanan WHERE t.status = 'dibayar' AND tgl_pesanan BETWEEN '$tgl_awal' AND '$tgl_akhir'";
 	} else {
 		$sql = "SELECT * FROM transaksi t JOIN pesanan p ON p.no_pesanan = t.no_pesanan WHERE t.status = 'dibayar'";
 	}
